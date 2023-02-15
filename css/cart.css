@@ -1,116 +1,131 @@
-.thumbnail{
-    width: 100%;
-    min-width: 375px;
-    height: 100%;
-    padding-right: 100px;
+.container {
+  width: 75%;
+  max-width: 1800px;
+}
+
+.thumbnail {
+  width: 100%;
+  min-width: 375px;
+  height: 100%;
+  padding-right: 100px;
 }
 
 /*Thumbnail size fix for responsiveness*/
-@media (max-width:550px){
-    .thumbnail{
-        min-width: 100%;
-    }
+@media (max-width:550px) {
+  .thumbnail {
+    min-width: 100%;
+  }
 }
+
 /*Bootstrap md breakpoint*/
-@media (max-width:768px){
-    .thumbnail{
-        padding-right: 0;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
+@media (max-width:768px) {
+  .thumbnail {
+    padding-right: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .center img {
+    width: 100%;
+  }
 }
 
-.row{
-    margin-top: 25px;
-}
-
-.container{
-    width: 75%;
-    max-width: 1800px;
+/*Item list and prices*/
+.row {
+  margin-top: 25px;
 }
 
 .prices {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    min-height: 200px;
-    font-size: 25px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-height: 200px;
+  font-size: 25px;
 }
 
 .title {
-    max-width: 75%;
-    float: left;
-    line-height: 35px;
+  max-width: 75%;
+  float: left;
+  line-height: 35px;
 }
 
 .subtext {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .total {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .amount {
-    float: right;
-    color: #275A53;
+  float: right;
+  color: #275A53;
 }
 
-hr{
-    border: 1px solid #001F23;
+hr {
+  border: 1px solid #001F23;
 }
 
 /*Contact Form*/
-form{
-    width: 100%;
+form {
+  width: 100%;
 }
 
-input, select{
-    width: 90%;
-    margin-bottom: 10px;
-    padding-left: 5px;
-    border: none;
-    background-color: #F5F0E3;
-    border-bottom: solid #a3a3a3;
+input,
+select {
+  width: 90%;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  border: none;
+  background-color: #F5F0E3;
+  border-bottom: solid #a3a3a3;
 }
 
-.box{
+/*Tick boxes*/
+.box {
+  float: left;
+  margin-left: 25px;
+}
+
+.box-text {
+  float: left;
+  margin-left: 5px;
+  max-width: 75%;
+}
+
+/*Button to next page*/
+.continue-button {
+  float: right;
+  background-color: #275A53;
+  color: white;
+  width: 250px;
+  height: 85px;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 25px;
+  font-size: 20px;
+}
+
+.button-link:hover {
+  text-decoration: none;
+}
+
+@media (max-width:576px) {
+  .continue-button {
     float: left;
-    margin-left: 25px;
+  }
 }
 
-.box-text{
-    float: left;
-    margin-left: 5px;
-    max-width: 75%;
+/*Payment options*/
+.center {
+  text-align: center;
+  font-size: 20px;
 }
 
-a{
-    text-decoration: none;
-    color: #001F23;
-}
-
-.continue-button{
-    float: right;
-    background-color: #275A53;
-    color: white;
-    width: 200px;
-    height: 85px;
-    border-radius: 10px;
-    text-align: center;
-    padding-top: 25px;
-    font-size: 20px;
-}
-
-.button-link:hover{
-    text-decoration: none;
-}
-
-@media (max-width:576px){
-    .continue-button{
-        float: left;
-    }
+.center img {
+  display: block;
+  margin: auto;
 }

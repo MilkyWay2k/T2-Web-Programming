@@ -1,0 +1,29 @@
+.container {
+  width: 75%;
+  max-width: 1800px;
+}
+
+hr {
+  margin-top: -3%;
+  margin-right: auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+.article {
+  margin-bottom: 20px;
+}
+
+button a {
+  color: white !important;
+}
+
+.image {
+  margin-bottom: 15px;
+}
+
+.white {
+  color: white !important;
+}

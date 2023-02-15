@@ -1,141 +1,157 @@
 body {
-    background-color: #F5F0E3;
-    color: #001F23;
-    font-family: Roboto;
+  background-color: #F5F0E3;
+  color: #001F23;
+  font-family: Roboto;
 }
 
-header, footer {
-    background-color: #F8C765;
+header,
+footer {
+  background-color: #F8C765;
 }
-
 
 .actbutton {
-    color: #E3492B;
+  color: #E3492B;
 }
 
-.text-bg-dark{
-    background-color: transparent;
-}
-.category{
-    padding-bottom: 2%;
+.text-bg-dark {
+  background-color: transparent;
 }
 
-.card{
-    width: 360px;
-    height: 94px;
-    --bs-card-bg: none;
-    --bs-card-border-color: none;
-    color: white;
-    border-radius: 5px;
-    padding: 10px;
+.category {
+  padding-bottom: 2%;
 }
 
-
-.text-bg-dark{
-    color: white;
+.card {
+  width: 360px;
+  height: 94px;
+  --bs-card-bg: none;
+  --bs-card-border-color: none;
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-.card-title-category{
-    padding-left: 40px;
-    padding-top: 15px;
-    
+.text-bg-dark {
+  color: white;
 }
-.card-text{
-    padding-left: 40px;
+
+.card-title-category {
+  padding-left: 40px;
+  padding-top: 15px;
+
 }
-.products{
-    height: 310px;
-    width:  300px;
-    background-color: #fff;
-    color: #001F23;
-    margin-top: 5%;
-    transition: all 750ms ease;
+
+.card-text {
+  padding-left: 40px;
 }
-.products:hover{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+
+.products {
+  height: 310px;
+  width: 300px;
+  background-color: #fff;
+  color: #001F23;
+  margin-top: 5%;
+  transition: all 750ms ease;
 }
-.card-body > .btn{
-    --bs-btn-border-radius: 25px;
+
+.products:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.card-body>.btn {
+  --bs-btn-border-radius: 25px;
+}
+
 .btn-circle {
-    width: 50px;
-    height: 50px;
-    padding: 7px 13px;
-    border-radius: 35px;
-    font-size: 24px;
-    line-height: 1.33;
-    margin-left: 80%;
-    margin-top: -55%;
+  width: 50px;
+  height: 50px;
+  padding: 7px 13px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
+  margin-left: 80%;
+  margin-top: -55%;
 }
 
-i{
-    text-align:center !important;
+i {
+  text-align: center !important;
 }
-.price{
-    font-weight: 500;
-    margin-bottom: -1%;
-    /*margin-top: 15%;
-    */position: absolute;
+
+.price {
+  font-weight: 500;
+  margin-bottom: -1%;
+  position: absolute;
 }
-.products > .card-body > .card-title{
-    padding: 0px;
-    
-} 
-hr{
-    width: 80%;
-    margin-left: 5%;
-    margin-right: 5%;
+
+.products>.card-body>.card-title {
+  padding: 0px;
+
 }
-.category > div > div > a{
-    text-decoration: none;
-    color: white;
+
+hr {
+  width: 80%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
-a{
-    text-decoration: none;
-    color: #001F23;
+
+.category>div>div>a {
+  text-decoration: none;
+  color: white;
 }
-.gal{
-    max-width: 500px;
+
+a {
+  text-decoration: none;
+  color: #001F23;
+}
+
+.gal {
+  max-width: 500px;
 }
 
 .qty {
-    width: 40px;
-    height: 25px;
-    text-align: center;
+  width: 40px;
+  height: 25px;
+  text-align: center;
 }
-input.qtyplus { width:25px; height:25px;}
-input.qtyminus { width:25px; height:25px;}
 
-.form-select{
-    width: 90px;
-    border: none;
-    background-color: transparent;
+input.qtyplus {
+  width: 25px;
+  height: 25px;
 }
-.description > div > ul > li{
-    padding: 5px;
+
+input.qtyminus {
+  width: 25px;
+  height: 25px;
 }
-.des-right{
-    margin-left: 50%; 
+
+.form-select {
+  width: 90px;
+  border: none;
+  background-color: transparent;
 }
-.whole-shit-together{
-    width: 75%;
-    max-width: 1800px;
+
+.description>div>ul>li {
+  padding: 5px;
 }
+
+.des-right {
+  margin-left: 50%;
+}
+
+.whole-shit-together {
+  width: 75%;
+  max-width: 1800px;
+}
+
 @media only screen and (max-width: 767px) {
-    /* For mobile phones: */
-    .catcard {
-        width: 100%;
-        height: 120px;
-        overflow: hidden;
-        --bs-card-bg: none;
-        --bs-card-border-color: none;
-        border-radius: 5px;
-        transform: scale(1);
-    }
+  /* For mobile phones: */
+  .catcard {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    --bs-card-bg: none;
+    --bs-card-border-color: none;
+    border-radius: 5px;
+    transform: scale(1);
   }
-
-
-/*Button colors
-Green: #275A53
-Red: #E3492B
-*/  
+}
