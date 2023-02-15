@@ -1,0 +1,108 @@
+/*.my-class-with-padding {
+    padding-left: 58px;
+}*/
+
+.navbar-brand {
+    display: block;
+    width: 395px;
+    height: 103px;
+    background: url(images/LogoBig.png);
+}
+
+@media screen and (max-width: 768px) {
+    .navbar-brand {
+        width: 111px;
+        height: 101px;
+        background: url(images/LogoSmall.png);
+    }
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.links {
+    margin-right: 40px;
+    font-size: 20px;
+    font-weight: 300;
+
+}
+
+@media (max-width: 800px) {
+    .links {
+        font-size: 20px;
+    }
+}
+
+.nav-link {
+    margin-left: 14px;
+}
+
+.cart {
+    margin-right: 58px;
+}
+
+footer {
+    margin-top: 20px;
+    padding-top: 60px;   
+}
+
+.footer text{
+    max-width: 100%;
+}
+
+.l {
+    align-self: center;
+    text-align: left;
+    margin-right: 40px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.footer-link {
+    margin-left: 5px;
+}
+
+.PM img{
+    max-width: 100%;
+    padding-top: 10px;
+}
+
+.media {
+    display: flex;
+    flex-direction: row;
+  
+ }
+
+.media a {
+   text-decoration: none;
+   margin: 0 5px 0 0;
+   padding-right: 10px;
+   justify-content: left;
+}
+
+h2 {
+    margin: 0 auto;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.textcols {
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+    color: #001F23;
+}
+
+.benefits { 
+    text-align: left; 
+}
+
+.footer-bottom {
+    padding-top: 40px;
+    font-size: 13px;
+}

@@ -1,0 +1,34 @@
+hr {
+    margin-top: -3%;
+    margin-right: auto;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    width: 75%;
+    max-width: 1800px;
+}
+
+.container a{
+    text-decoration: none;
+    color: #001F23;
+}
+
+.article {
+    margin-bottom: 20px;
+}
+
+button a{
+    color: white !important;
+}
+
+.image{
+    margin-bottom: 15px;
+}
+
+.white{
+    color: white !important;
+}
