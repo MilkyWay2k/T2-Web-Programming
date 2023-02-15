@@ -6,14 +6,14 @@
     display: block;
     width: 395px;
     height: 103px;
-    background: url(images/LogoBig.png);
+    background: url(../images/LogoBig.png);
 }
 
 @media screen and (max-width: 768px) {
     .navbar-brand {
         width: 111px;
         height: 101px;
-        background: url(images/LogoSmall.png);
+        background: url(../images/LogoSmall.png);
     }
 }
 
