@@ -1,65 +1,14 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/blog.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="images/Skatefavicon-16x16.png" type="image/x-icon">
-  <title>Skate Shop - Blog</title>
-</head>
-
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <div class="cotainer-fluid img-1">
-          <a class="navbar-brand" href="index.html"></a>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 links">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="shop.html">Shop</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="blog.html">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#contacts">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html#about">About&nbsp;Us</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav mb-2 mb-lg-0 cart">
-            <li class="nav-item">
-              <a class="nav-link active" href="#"><img src="images/Icons/search.png" alt="search" width="30"
-                  height="30"></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="cart.html"><img src="images/Icons/Shoppingcart.png" alt="cart" width="30"
-                  height="30"></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
+<?php
+$title = "Skate Shop - Blog";
+$stylesheet = "blog";
+$extra = "";
+include "partials/header.php";
+?>
 
   <div class="container">
     <div class="row breadcrumbs">
       <div class="col-12 p-4">
-        <a href="index.html">
+        <a href="index.php">
           Main page
         </a>
         <img src="images/Icons/ArrowRight.png" alt="Blog3">
@@ -68,12 +17,12 @@
     </div>
     <div class="row justify-content-center article">
       <div class="col-md-6 image">
-        <a href="article.html">
+        <a href="article.php">
           <img src="images/Blog1.png" alt="Blog1">
         </a>
       </div>
       <div class="col-md-6 text-center">
-        <a href="article.html" role="button">
+        <a href="article.php" role="button">
           <h5>Skateparks under the magnifying <br> glass | Dortmund-Hombruch</h5>
         </a>
         <br>
@@ -83,7 +32,7 @@
           for this special Strangelove guest mini series. The 3 decks are called Classic, Legacy and What If…? Classic –
           As mentioned Cliver penned the original Powell Peralta Ray Barbee Rag Doll Graphic. This model the Strangelove
           Ray Barbee Classic Skateboard Deck runs the same colours as the original with the Cyan Blue Dip.</h6>
-        <a href="article.html" class="btn btn-danger btn-circle white">
+        <a href="article.php" class="btn btn-danger btn-circle white">
           <h6>Read more</h6>
         </a>
       </div>
@@ -91,12 +40,12 @@
     <br>
     <div class="row justify-content-center">
       <div class="col-md-6 image">
-        <a href="article.html">
+        <a href="article.php">
           <img src="images/Blog1.png" alt="Blog1">
         </a>
       </div>
       <div class="col-md-6 text-center">
-        <a href="article.html" role="button">
+        <a href="article.php" role="button">
           <h5>Skateparks under the magnifying <br> glass | Dortmund-Hombruch</h5>
         </a>
         <br>
@@ -106,7 +55,7 @@
           for this special Strangelove guest mini series. The 3 decks are called Classic, Legacy and What If…? Classic –
           As mentioned Cliver penned the original Powell Peralta Ray Barbee Rag Doll Graphic. This model the Strangelove
           Ray Barbee Classic Skateboard Deck runs the same colours as the original with the Cyan Blue Dip.</h6>
-        <a href="article.html" class="btn btn-danger btn-circle white">
+        <a href="article.php" class="btn btn-danger btn-circle white">
           <h6>Read more</h6>
         </a>
       </div>
