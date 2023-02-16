@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <div class="cotainer-fluid img-1">
-          <a class="navbar-brand" href="index.html"></a>
+          <a class="navbar-brand" href="index.php"></a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,16 +30,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 links">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="shop.html">Shop</a>
+              <a class="nav-link active" aria-current="page" href="shop.php">Shop</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="blog.html">Blog</a>
+              <a class="nav-link active" aria-current="page" href="blog.php">Blog</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#contacts">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html#about">About&nbsp;Us</a>
+              <a class="nav-link active" aria-current="page" href="index.php#about">About&nbsp;Us</a>
             </li>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 cart">
@@ -59,11 +59,11 @@
 
   <div class="container whole-shit-together">
     <div class="col-12 p-4 breadcrumbs">
-      <a href="index.html">
+      <a href="index.php">
         Main page
       </a>
       <img src="images/Icons/ArrowRight.png" alt="Blog3">
-      <a href="shop.html">
+      <a href="shop.php">
         Shop
       </a>
       <img src="images/Icons/ArrowRight.png" alt="Blog3">
@@ -136,7 +136,7 @@
           </ul>
         </div>
         <div class="col-sm-2 offset-sm-2 offset-md-4 d-flex justify-content-end order-1 order-sm-3">
-          <form action="cart.html">
+          <form action="cart.php">
             <input type="number" id="quantity" name="quantity" min="1" max="10" value="1"
               style="margin: 0 10px 10px 0;">
             <input type="submit" class="btn btn-danger btn-sm submit-btn" value="Buy" style="padding: 15px;">
@@ -146,80 +146,10 @@
     </div>
   </div>
 
-  <footer>
-    <div class="container text-center">
-      <div class="row">
-        <div class="col">
-          <ul class="navbar-nav l">
-            <li class="nav-item">
-              <a class="nav-link active footer-link" aria-current="page" href="shop.html">Shop</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active footer-link" aria-current="page" href="blog.html">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active footer-link" aria-current="page" href="index.html#about">About&nbsp;Us</a>
-            </li>
-          </ul>
-          <div class="media">
-            <a href="#">
-              <img src="images/Icons/Instagram.png" alt="ig" width="30" height="30">
-            </a>
-            <a href="#">
-              <img src="images/Icons/Facebook.png" alt="fb" width="30" height="30">
-            </a>
-            <a href="#">
-              <img src="images/Icons/Twitter.png" alt="tw" width="30" height="30">
-            </a>
-          </div>
-        </div>
-        <div class="col">
-          <div class="PM">
-            <h2>Payment methods</h2>
-            <img src="images/Icons/PaymentMethods.png" alt="payment">
-          </div>
-        </div>
-        <div class="col">
-          <a name="contacts" id="contacts">
-            <h2>Contact with us</h2>
-          </a><br>
-          <div class="textcols">
-            <div class="textcols one">
-              <p>Skate Shop store<br>Funnytie 33,<br>13100 Hämeenlinna.<br>Webstore 24/7</p>
-            </div>
-            <div class="textcols two">
-              <p><a href="tel:+358405555555">040 555 5555</a><br>
-                <a href="mailto:shop@skate-shop.fi">shop@skate-shop.fi</a><br>VAT id: FI32008000
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <h2>Customer Benefits</h2><br>
-          <ul>
-            <li class="benefits">30-day return</li>
-            <li class="benefits">Free shipping on orders over 100€</li>
-            <li class="benefits">Fast shipping</li>
-            <li class="benefits">SSL Secure Shopping</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!--Bottom footer-->
-    <div class="footer-bottom">
-      <div class="row">
-        <div class="d-flex justify-content-center">
-          <div class="col-md-12 text-center">
-            <p>&copy; 2023 Skate Shop</p>
-          </div>
-        </div>
-      </div>
-  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
-  <script src="script.js"></script>
-</body>
+  <?php
 
-</html>
+    include 'partials/footer.php';
+
+
+  ?>
