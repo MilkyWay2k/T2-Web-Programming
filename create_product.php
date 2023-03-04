@@ -102,9 +102,11 @@ if (isset($_POST["csubmit"])) {
 //The image probably isn't saved correctly idk yet, fix later
 if (isset($_POST["isubmit"])) {
   $title = $_POST["title"];
-  $image = $_POST["image"];
+  $image = $_FILES['image']['tmp_name'];
+  $imgContent = addslashes(file_get_contents($image));
+
   $sql = "insert into product_image (title, image)
-    values('$title', '$image')";
+    values('$title', '$imgContent')";
   if ($conn->query($sql)) {
     echo "Success!";
   } else {

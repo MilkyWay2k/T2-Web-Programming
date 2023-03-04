@@ -3,6 +3,7 @@ $title = "Skate Shop - Shop Page";
 $stylesheet = "shop";
 $extra = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css    \">";
 include "partials/header.php";
+include "databases/db.php";
 ?>
 
   <div class="container category">
@@ -94,48 +95,30 @@ include "partials/header.php";
           </a>
         </div>
       </div>
-
-      <div class="col d-flex justify-content-xl-start justify-content-center">
-        <div class="card products">
-          <a href="product.php">
-            <img src="images/Product1.png" class=" card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">brand new sakteboard skull collection </h5>
-              <p class="price">Price</p><br>
-              <p class="fw-bold" style="color: #275A53;">100€ <del style="color: black;">200€</del></p>
-              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col d-flex justify-content-xl-start justify-content-center">
-        <div class="card products">
-          <a href="product.php">
-            <img src="images/Product1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">brand new sakteboard skull collection </h5>
-              <p class="price">Price</p><br>
-              <p class="fw-bold" style="color:#275A53;">100€ <del style="color: black;">200€</del></p>
-              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col d-flex justify-content-xl-start justify-content-center">
-        <div class="card products">
-          <a href="product.php">
-            <img src="images/Product1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">brand new sakteboard skull collection </h5>
-              <p class="price">Price</p><br>
-              <p class="fw-bold" style="color:#275A53;">100€ <del style="color: black;">200€</del></p>
-              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-            </div>
-          </a>
-        </div>
-      </div>
+      <?php
+      $query = "SELECT product.product_name AS `name`, product.price AS `price`, product_image.image AS `image` FROM product INNER JOIN product_image ON product.image_id=product_image.image_id";
+      $result = $conn->query($query);
+      if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)){
+          echo "<div class=\"col d-flex justify-content-xl-start justify-content-center\">
+          <div class=\"card products\">
+            <a href=\"product.php\">
+              <img src=" . $row['image'] . "\" class=\"card-img-top\" alt=\"...\">
+              <div class=\"card-body\">
+                <h5 class=\"card-title\">" .$row['name'] ."</h5>
+                <p class=\"price\">Price</p><br>
+                <p class=\"fw-bold\" style=\"color:#275A53 ;\">" .$row['price'] ."€</p>
+                <a href=\"#\" class=\"btn btn-danger btn-circle\"><i class=\"fa-solid fa-shopping-bag fa-md\"></i></a>
+              </div>
+            </a>
+          </div>
+        </div>";
+        }
+      }
+      else
+        echo "No products found";
+      ?>
+      
     </div>
   </div>
 
