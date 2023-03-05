@@ -18,8 +18,12 @@ if ($conn->connect_error) {
 }
 
 mysqli_select_db($conn, 'products');
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
+$sql_product = "SELECT * FROM products";
+$result_product = $conn->query($sql_product);
+
+
+$sql_category = "SELECT * FROM product_category";
+$result_category = $conn->query($sql_category);
 
 ?>
 
@@ -35,57 +39,23 @@ $result = $conn->query($sql);
       </a>
     </div>
 
+
+
     <div class="row d-flex justify-content-center justify-content-md-start">
+          <?php
+            while($row = $result_category->fetch_assoc()):
+          ?>  
       <div class="card col-4 text-md catcard">
         <a href="#">
-          <img src="images/ProductCategory1.png" class="card-img" alt="skate">
+          <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img" alt="<?php echo $row['category_name']; ?>">
           <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">skateboard</h5>
+            <h5 class="card-title card-title-category"><?php echo $row['category_name']; ?></h5>
             <p class="card-text"><small>12 items</small></p>
           </div>
         </a>
       </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory3.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">clothes</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">stickers</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">fingerboard</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">others</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-    </div>
+      <?php endwhile; ?>
+      
   </div>
 
   <hr style="margin: auto;">
@@ -102,7 +72,7 @@ $result = $conn->query($sql);
     <div class="row">
       
       <?php
-        while($row = $result->fetch_assoc()):
+        while($row = $result_product->fetch_assoc()):
       ?>
       <div class="col d-flex justify-content-xl-start justify-content-center">
         <div class="card products">
