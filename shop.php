@@ -6,105 +6,129 @@ include "partials/header.php";
 include "databases/db.php";
 ?>
 
-  <div class="container category">
-    <div class="col-12 p-4 breadcrumbs">
-      <a href="index.php">
-        Main page
-      </a>
-      <img src="images/Icons/ArrowRight.png" alt="Blog3">
-      <a href="shop.php">
-        <b>Shop</b>
-      </a>
-    </div>
-
-    <div class="row d-flex justify-content-center justify-content-md-start">
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">skateboard</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory3.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">clothes</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">stickers</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">fingerboard</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">others</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-    </div>
+<div class="container category">
+  <div class="col-12 p-4 breadcrumbs">
+    <a href="index.php">
+      Main page
+    </a>
+    <img src="images/Icons/ArrowRight.png" alt="Blog3">
+    <a href="shop.php">
+      <b>Shop</b>
+    </a>
   </div>
 
-  <hr style="margin: auto;">
-
-  <div class="container justify-content-center">
-    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-      <option selected>Sorting</option>
-      <option value="1">lowest price</option>
-      <option value="2">highest price</option>
-      <option value="3">newest</option>
-      <option value="4">odlest</option>
-    </select>
-
-    <div class="row">
-      <?php
-      $query = "SELECT product.product_name AS `name`, product.price AS `price`, product_image.image AS `image` FROM product INNER JOIN product_image ON product.image_id=product_image.image_id";
-      $result = $conn->query($query);
-        while ($row = mysqli_fetch_assoc($result)):
-          ?>
-          <div class="col-xl-3 col-md-4 d-flex justify-content-xl-start justify-content-center">
-          <div class="card products">
-            <a href="product.php">
-              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title"><?php echo $row['name']; ?></h5>
-                <p class="price">Price</p><br>
-                <p class="fw-bold" style="color:#275A53 ;"><?php echo $row['price']; ?>€</p>
-                <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-              </div>
-            </a>
-          </div>
+  <div class="row d-flex justify-content-center justify-content-md-start">
+    <div class="card col-4 text-md catcard">
+      <a href="#">
+        <img src="images/ProductCategory1.png" class="card-img" alt="skate">
+        <div class="card-img-overlay">
+          <h5 class="card-title card-title-category">skateboard</h5>
+          <p class="card-text"><small>12 items</small></p>
         </div>
-      <?php endwhile;?>
-      
+      </a>
+    </div>
+
+    <div class="card col-4 text-md catcard">
+      <a href="#">
+        <img src="images/ProductCategory3.png" class="card-img" alt="skate">
+        <div class="card-img-overlay">
+          <h5 class="card-title card-title-category">clothes</h5>
+          <p class="card-text"><small>12 items</small></p>
+        </div>
+      </a>
+    </div>
+
+    <div class="card col-4 text-md catcard">
+      <a href="#">
+        <img src="images/ProductCategory2.png" class="card-img" alt="skate">
+        <div class="card-img-overlay">
+          <h5 class="card-title card-title-category">stickers</h5>
+          <p class="card-text"><small>12 items</small></p>
+        </div>
+      </a>
+    </div>
+
+    <div class="card col-4 text-md catcard">
+      <a href="#">
+        <img src="images/ProductCategory1.png" class="card-img" alt="skate">
+        <div class="card-img-overlay">
+          <h5 class="card-title card-title-category">fingerboard</h5>
+          <p class="card-text"><small>12 items</small></p>
+        </div>
+      </a>
+    </div>
+
+    <div class="card col-4 text-md catcard">
+      <a href="#">
+        <img src="images/ProductCategory2.png" class="card-img" alt="skate">
+        <div class="card-img-overlay">
+          <h5 class="card-title card-title-category">others</h5>
+          <p class="card-text"><small>12 items</small></p>
+        </div>
+      </a>
     </div>
   </div>
+</div>
 
-  <?php
-    include 'partials/footer.php';
-  ?>
+<hr style="margin: auto;">
+
+<div class="container justify-content-center">
+  <form method="post">
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="sorting" onchange="this.form.submit()">
+      <option selected>Sorting</option>
+      <option value="1">Lowest price first</option>
+      <option value="2">Highest price first</option>
+      <option value="3">Name [A-Z]</option>
+      <option value="4">Name [Z-A]</option>
+    </select>
+  </form>
+
+
+  <div class="row">
+    <?php
+    $query = $queryBase = "SELECT product.product_name AS `name`, product.price AS `price`, product_image.image AS `image` FROM product INNER JOIN product_image ON product.image_id=product_image.image_id";
+    if (isset($_POST['sorting'])) {
+      $sorting = $_POST['sorting'];
+      if ($sorting == 1) {
+        $query = $queryBase . " ORDER BY price ASC";
+      }
+      else if ($sorting == 2) {
+        $query = $queryBase . " ORDER BY price DESC";
+      }
+      else if ($sorting == 3) {
+        $query = $queryBase . " ORDER BY name ASC";
+      }
+      else if ($sorting == 4) {
+        $query = $queryBase . " ORDER BY name DESC";
+      }
+      //echo $query;
+    }
+    
+    $result = $conn->query($query);
+    while ($row = mysqli_fetch_assoc($result)):
+      ?>
+      <div class="col-xl-3 col-md-4 d-flex justify-content-xl-start justify-content-center">
+        <div class="card products">
+          <a href="product.php">
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                <?php echo $row['name']; ?>
+              </h5>
+              <p class="price">Price</p><br>
+              <p class="fw-bold" style="color:#275A53 ;">
+                <?php echo $row['price']; ?>€
+              </p>
+              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
+            </div>
+          </a>
+        </div>
+      </div>
+    <?php endwhile; ?>
+
+  </div>
+</div>
+
+<?php
+include 'partials/footer.php';
+?>
