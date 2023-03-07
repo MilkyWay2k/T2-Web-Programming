@@ -59,8 +59,8 @@ include "databases/db.php";
   <!--Product image form -->
   <div class="col-4">
     <h2>Add Product image</h2>
-    <form method="post" action="" enctype="multipart/form-data">
-      <input type="file" name="prod_image"><br>
+    <form method="post" action="" onsubmit="return valImage()" enctype="multipart/form-data" name="image">
+      <input type="file" name="prod_image" required><br>
       <input type="text" name="title" placeholder="Image title" required><br>
       <input type="submit" value="Submit" name="isubmit">
     </form>

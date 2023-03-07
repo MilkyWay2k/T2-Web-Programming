@@ -40,7 +40,7 @@ include "partials/header.php";
     <h4>Contact information</h4>
     <div class="row justify-content-center">
       <div class="col-md-6 justify-content-center text-center" style="margin-bottom: 20px;">
-        <form>
+        <form method="post" name="cartForm">
           <input type="text" id="fname" name="fname" placeholder="First name"> <br>
           <input type="text" id="lname" name="lname" placeholder="Last name"><br>
           <input type="text" id="email" name="email" placeholder="Email"><br>
@@ -56,12 +56,13 @@ include "partials/header.php";
             <input type="radio" id="delivery" name="deliveryOption" value="delivery">
           </div>
           <div class="box-text">Delivery</div>
-        </form>
+        <!--</form>-->
       </div>
       <div class="col-md-6 justify-content-center text-center">
-        <form>
+        <!--<form>-->
           <select id="country" name="country">
-            <option value="" selected disabled hidden>Country</option>
+            <!--<option value="" selected disabled hidden>Country</option>
+            -->
             <option value="finland">Finland</option>
             <option value="australia">Australia</option>
             <option value="canada">Canada</option>
@@ -72,7 +73,7 @@ include "partials/header.php";
           </select><br>
           <input type="text" id="company" name="company" placeholder="Company (Optional)"><br>
           <input type="text" id="address" name="address" placeholder="Address"><br>
-          <input type="text" id="postal code" name="postal code" placeholder="Postal code"
+          <input type="text" id="postal code" name="postalCode" placeholder="Postal code"
             style="width: 40%; margin-right: 10%;">
           <input type="text" id="city" name="city" placeholder="City" style="width: 40%;"><br>
           <input type="text" id="phone" name="phone" placeholder="Phone"><br>
@@ -92,7 +93,7 @@ include "partials/header.php";
       </div>
       <div class="col-sm-6">
         <a href="shipment.php" class="button-link">
-          <div class="continue-button">
+          <div class="continue-button" onclick="return valCart()">
             Continue to shipping
           </div>
         </a>
