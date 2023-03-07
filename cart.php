@@ -33,7 +33,7 @@ if ($conn->connect_error) {
         ";
         */
 
-$sql = "SELECT products.product_name, SUM(cart_item.quantity), SUM(products.price)
+$sql = "SELECT products.product_name, SUM(cart_item.quantity) AS quantity, MIN(products.price)*SUM(cart_item.quantity) AS total_price
 FROM cart_item INNER JOIN products ON cart_item.product_id = products.product_id
 GROUP BY products.product_name;
         ";
@@ -70,9 +70,9 @@ $result_cart = $conn->query($sql_cart);
             while($row = $result->fetch_assoc()){ 
 
           ?>
-          <div class="title"><?php echo $row['SUM(cart_item.quantity)']; ?>x</div>
+          <div class="title"><?php echo $row['quantity']; ?>x</div>
           <div class="title"><?php echo $row['product_name']; ?></div>
-          <div class="amount"><?php echo $row['SUM(products.price)']; ?>€</div>
+          <div class="amount"><?php echo $row['total_price']; ?>€</div>
           <br>
           <?php 
           }

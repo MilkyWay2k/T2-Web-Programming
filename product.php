@@ -34,6 +34,39 @@ if ($result && mysqli_num_rows($result) > 0) {
     $product = mysqli_fetch_assoc($result);
 }
 
+
+
+
+
+
+// Check if the form was submitted
+if (isset($_POST['buy'])) {
+    
+  // Get the form data
+  $product_id = $_POST['product_id'];
+  $product_name = $_POST['product_name'];
+  $product_price = $_POST['product_price'];
+  $quantity = $_POST['quantity'];
+
+  echo $product_id ;
+
+  
+  // Insert the values into the database
+  $sql = "INSERT INTO `cart_item` (session_id, product_id, quantity)
+          VALUES ('$session_id', '$product_id', '$quantity')";
+  
+  if (mysqli_query($conn, $sql)) {
+      echo "Order placed successfully";
+  } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+  }
+  
+  // Close the database connection
+  mysqli_close($conn);
+
+
+}
+
 ?>
 
   <div class="container whole-shit-together">
@@ -127,33 +160,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 <?php
 
-// Check if the form was submitted
-if (isset($_POST['buy'])) {
-    
-    // Get the form data
-    $product_id = $_POST['product_id'];
-    $product_name = $_POST['product_name'];
-    $product_price = $_POST['product_price'];
-    $quantity = $_POST['quantity'];
 
-    echo $product_id ;
-
-    
-    // Insert the values into the database
-    $sql = "INSERT INTO `cart_item` (session_id, product_id, quantity)
-            VALUES ('$session_id', '$product_id', '$quantity')";
-    
-    if (mysqli_query($conn, $sql)) {
-        echo "Order placed successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-    
-    // Close the database connection
-    mysqli_close($conn);
-
-
-  }
 
 ?>
 
