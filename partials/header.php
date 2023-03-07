@@ -11,8 +11,10 @@
   <link rel="stylesheet" href="css/<?php echo $stylesheet; ?>.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="images/Skatefavicon-16x16.png" type="image/x-icon">
-  <title><?php echo $title; ?></title>
-  <?php echo $extra;?>
+  <title>
+    <?php echo $title; ?>
+  </title>
+  <?php echo $extra; ?>
   <script src="../js/val.js"></script>
 </head>
 
@@ -48,8 +50,23 @@
                   height="30"></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="cart.php"><img src="images/Icons/Shoppingcart.png" alt="cart" width="30"
-                  height="30"></a>
+            <a class="nav-link active" href="cart.php">
+            
+            
+            <?php
+            include "databases/db.php";
+            $query = "SELECT * FROM cart_item";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+              echo "<img src=\"images/Icons/ShoppingcartNotification.png\" alt=\"cart\" width=\"30\" height=\"30\">";
+            }
+            else{
+              echo "<img src=\"images/Icons/Shoppingcart.png\" alt=\"cart\" width=\"30\" height=\"30\">";
+            }
+            ?>
+            
+            
+              </a>
             </li>
           </ul>
         </div>
