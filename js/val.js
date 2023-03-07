@@ -53,11 +53,6 @@ function valImage(){
 }
 
 //cart.php validation
-function test(){
-  alert("Test function entered");
-  return false;
-}
-
 function valCart(){
   let fname = document.forms["cartForm"]["fname"].value.trim();
   let lname = document.forms["cartForm"]["lname"].value.trim();
@@ -115,4 +110,8 @@ function valCart(){
     alert("Please enter a valid phone number");
     return false;
   }
+}
+
+function toPayment(){
+  window.location.assign("payment.php");
 }
