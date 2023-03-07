@@ -28,6 +28,8 @@ $result_category = $conn->query($sql_category);
 ?>
 
 
+
+
   <div class="container category">
     <div class="col-12 p-4 breadcrumbs">
       <a href="index.php">
@@ -39,6 +41,7 @@ $result_category = $conn->query($sql_category);
       </a>
     </div>
 
+    
 
 
     <div class="row d-flex justify-content-center justify-content-md-start">
@@ -56,6 +59,8 @@ $result_category = $conn->query($sql_category);
       </div>
       <?php endwhile; ?>
       
+    </div>
+    </div>
   </div>
 
   <hr style="margin: auto;">
@@ -70,6 +75,7 @@ $result_category = $conn->query($sql_category);
     </select>
 
     <div class="row">
+    <div class="row">
       
       <?php
         while($row = $result_product->fetch_assoc()):
@@ -81,7 +87,7 @@ $result_category = $conn->query($sql_category);
               <div class="card-body">
                     <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
                     <p class="price">Price</p><br>
-                    <p class="fw-bold" style="color:#275A53;"><?php echo $row['price']; ?>€ <del style="color: black;">200€</del></p>
+                    <p class="fw-bold" style="color:#275A53;"><?php echo $row['price']; ?>€ <del style="color: black;"><?php echo $row['discount']; ?>€</del></p>
                     <a href="product.php" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
               </div>
           </a>  
@@ -91,8 +97,8 @@ $result_category = $conn->query($sql_category);
       <?php endwhile; ?>
     </div>
   </div>
-
- 
+    </div>
+  </div>
 
   <?php
     include 'partials/footer.php';

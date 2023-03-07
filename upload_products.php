@@ -34,6 +34,9 @@ if ($conn->connect_error) {
         <label>Price:</label>
         <input type="text" name="price"><br><br>
 
+        <label>Discount:</label>
+        <input type="text" name="discount"><br><br>
+
         <label>Description:</label>
         <textarea name="description"></textarea><br><br>
 
@@ -69,6 +72,7 @@ if(isset($_POST['product_name'])) {
 // Get the form data
 $product_name = $_POST['product_name'];
 $price = $_POST['price'];
+$discount = $_POST['discount'];
 $description = $_POST['description'];
 $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
 $category = $_POST['category_id'];
@@ -76,7 +80,7 @@ $brandname = $_POST['brandname'];
 $featured = $_POST['featured'];
 
 // Insert the data into the products table
-$sql = "INSERT INTO products (product_name, price, description, image, category_id, brandname, featured) VALUES ('$product_name', '$price', '$description', '$image', '$category', '$brandname', ' $featured')";
+$sql = "INSERT INTO products (product_name, price, discount,description, image, category_id, brandname, featured) VALUES ('$product_name', '$price', '$discount','$description', '$image', '$category', '$brandname', ' $featured')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Product uploaded successfully!";

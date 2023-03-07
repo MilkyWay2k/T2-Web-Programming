@@ -1,128 +1,104 @@
 <?php
-$title = "Skate Shop - Shop Page";
-$stylesheet = "shop";
-$extra = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css    \">";
+$title = "Skate Shop - Cart";
+$stylesheet = "cart";
+$extra = "";
 include "partials/header.php";
-
-$servername = "webprog23-db-1";
-$username = "root";
-$password = "password";
-$dbname = "skate_shop";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-mysqli_select_db($conn, 'products');
-$sql = "SELECT * FROM products";
-$result = $conn->query($sql);
-
 ?>
 
-
-  <div class="container category">
-    <div class="col-12 p-4 breadcrumbs">
-      <a href="index.php">
-        Main page
-      </a>
-      <img src="images/Icons/ArrowRight.png" alt="Blog3">
-      <a href="shop.php">
-        <b>Shop</b>
-      </a>
-    </div>
-
-    <div class="row d-flex justify-content-center justify-content-md-start">
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">skateboard</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory3.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">clothes</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">stickers</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">fingerboard</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
-
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">others</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
+  <div class="container">
+    <div class="row breadcrumbs">
+      <div class="col-12">
+        <a href="index.php">Main page</a>
+        <img src="images/Icons/ArrowRight.png">
+        <a href="shop.php">Shop</a>
+        <img src="images/Icons/ArrowRight.png">
+        <b>Cart</b>
       </div>
     </div>
-  </div>
-
-  <hr style="margin: auto;">
-
-  <div class="container justify-content-center">
-    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-      <option selected>Sorting</option>
-      <option value="1">lowest price</option>
-      <option value="2">highest price</option>
-      <option value="3">newest</option>
-      <option value="4">odlest</option>
-    </select>
-
-    <div class="row">
-      
-      <?php
-        while($row = $result->fetch_assoc()):
-      ?>
-      <div class="col d-flex justify-content-xl-start justify-content-center">
-        <div class="card products">
-          <a href="product.php">
-              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="<?php echo $row['product_name']; ?>"/>
-              <div class="card-body">
-                    <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
-                    <p class="price">Price</p><br>
-                    <p class="fw-bold" style="color:#275A53;"><?php echo $row['price']; ?>€ <del style="color: black;">200€</del></p>
-                    <a href="product.php" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-              </div>
-          </a>  
+    <div class="row justify-content-center">
+      <div class="col-md-6 justify-content-center" style="margin-bottom: 10px;">
+        <img src="images/Product2.png" class="thumbnail">
+      </div>
+      <div class="col-md-6">
+        <div class="prices">
+          <div class="title">Super cool skateboard</div>
+          <div class="amount">100€</div>
+          <br>
+          <div class="title">Shipping</div>
+          <div class="amount">5€</div>
+          <div class="total">
+            <hr>
+            <div class="title"><b>Total</b></div>
+            <div class="amount">105€</div>
+            <br>
+            <p class="subtext">Including 25,2€ in taxes</p>
+          </div>
         </div>
       </div>
-      
-      <?php endwhile; ?>
+    </div>
+    <hr>
+    <h4>Contact information</h4>
+    <div class="row justify-content-center">
+      <div class="col-md-6 justify-content-center text-center" style="margin-bottom: 20px;">
+        <form>
+          <input type="text" id="fname" name="fname" placeholder="First name"> <br>
+          <input type="text" id="lname" name="lname" placeholder="Last name"><br>
+          <input type="text" id="email" name="email" placeholder="Email"><br>
+          <div class="box">
+            <input type="checkbox" id="signup" name="signup" checked>
+          </div>
+          <div class="box-text">Email me with news and offers</div><br>
+          <div class="box">
+            <input type="radio" id="pickup" name="deliveryOption" value="pickup">
+          </div>
+          <div class="box-text">Pick up</div>
+          <div class="box">
+            <input type="radio" id="delivery" name="deliveryOption" value="delivery">
+          </div>
+          <div class="box-text">Delivery</div>
+        </form>
+      </div>
+      <div class="col-md-6 justify-content-center text-center">
+        <form>
+          <select id="country" name="country">
+            <option value="" selected disabled hidden>Country</option>
+            <option value="finland">Finland</option>
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+            <option value="usa">USA</option>
+            <option value="nk">North Korea</option>
+            <option value="madagascar">Madagascar</option>
+            <option value="vatican">Vatican city</option>
+          </select><br>
+          <input type="text" id="company" name="company" placeholder="Company (Optional)"><br>
+          <input type="text" id="address" name="address" placeholder="Address"><br>
+          <input type="text" id="postal code" name="postal code" placeholder="Postal code"
+            style="width: 40%; margin-right: 10%;">
+          <input type="text" id="city" name="city" placeholder="City" style="width: 40%;"><br>
+          <input type="text" id="phone" name="phone" placeholder="Phone"><br>
+          <div class="box">
+            <input type="checkbox" id="save" name="save">
+          </div>
+          <div class="box-text">Save this infomation for next time</div>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-between">
+      <div class="col-sm-6" style="margin-bottom: 25px; width: 200px;">
+        <a href="shop.php">
+          <img src="images/Icons/ArrowLeft.png" alt="Left arrow">
+          Return to shop
+        </a>
+      </div>
+      <div class="col-sm-6">
+        <a href="shipment.php" class="button-link">
+          <div class="continue-button">
+            Continue to shipping
+          </div>
+        </a>
+      </div>
     </div>
   </div>
-
- 
 
   <?php
     include 'partials/footer.php';
