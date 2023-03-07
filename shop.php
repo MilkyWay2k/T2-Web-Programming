@@ -81,11 +81,11 @@ $result_category = $conn->query($sql_category);
 
       <?php
         while($row = $result_product->fetch_assoc()):
-          $a = 7;
+          
       ?>
       <div class="col d-flex justify-content-xl-start justify-content-center">
         <div class="card products">
-          <a href="product.php?link=<?php echo $row['product_id']; ?>">
+          <a href="product.php?link=<?php echo $row['product_id']; ?>&name=<?php echo $row['product_name']; ?>&price=<?php echo $row['price']; ?>&discount=<?php echo $row['discount']; ?>">
               <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="<?php echo $row['product_name']; ?>"/>
               <div class="card-body">
                     <h5 class="card-title"><?php echo $row['product_name']; ?></h5>

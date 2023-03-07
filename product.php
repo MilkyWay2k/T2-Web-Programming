@@ -23,12 +23,22 @@ if ($conn->connect_error) {
 }
 
 //retrieve the product ID from the URL parameter
-
 $product_wow = $_GET['link'];
+$product_n = $_GET['name'];
+$product_p = $_GET['price'];
+$product_d = $_GET['discount'];
+
+//printing correct image to the product
+$sql_image = "SELECT image FROM products WHERE product_id = $product_wow";
+$result_image = mysqli_query($conn, $sql_image);
+$product = mysqli_fetch_assoc($result_image);
+$image_data = $product['image'];
 
 $query = "SELECT * FROM products";
 $result = mysqli_query($conn, $query);
 $product = mysqli_fetch_assoc($result);
+
+
 // Check if the query was successful and retrieve the product data
 if ($result && mysqli_num_rows($result) > 0) {
     $product = mysqli_fetch_assoc($result);
@@ -36,6 +46,13 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 
 
+//printing correct desciption to the product
+$sql_desc = "SELECT description FROM products WHERE product_id = $product_wow";
+$result_desc = mysqli_query($conn, $sql_desc);
+$product_desc = mysqli_fetch_assoc($result_desc);
+$desc_data = $product_desc['description'];
+
+$bullets = explode(".", $desc_data);
 
 
 
@@ -48,7 +65,6 @@ if (isset($_POST['buy'])) {
   $product_price = $_POST['product_price'];
   $quantity = $_POST['quantity'];
 
-  echo $product_id ;
 
   
   // Insert the values into the database
@@ -95,13 +111,13 @@ if (isset($_POST['buy'])) {
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="images/Product2.png" class="d-block w-100" alt="item">
+            <img src="data:image/jpeg;base64,<?=base64_encode($image_data)?>" class="d-block w-100" alt="$product_n">
           </div>
           <div class="carousel-item">
-            <img src="images/Product2.png" class="d-block w-100" alt="item">
+            <img src="data:image/jpeg;base64,<?=base64_encode($image_data)?>" class="d-block w-100" alt="$product_n">
           </div>
           <div class="carousel-item">
-            <img src="images/Product2.png" class="d-block w-100" alt="item">
+            <img src="data:image/jpeg;base64,<?=base64_encode($image_data)?>" class="d-block w-100" alt="$product_n">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -122,21 +138,24 @@ if (isset($_POST['buy'])) {
     <div class="container description">
       <div class="row justify-content-between">
         <div class="col-sm-10">
-          <p class="text-start fw-bolder fs-4">Super coooool skateboard</p>
+          <p class="text-start fw-bolder fs-4"><?php echo $product_n;?></p>
         </div>
         <div class="col-sm-2">
-          <p class="text-end text-sm-start fw-bold fs-5 py-2" style="min-width: 150px;"><i style="color:#275A53 ;">€100
-              <del style="color: #001F23;">€200</del></i></p>
+          <p class="text-end text-sm-start fw-bold fs-5 py-2" style="min-width: 150px;"><i style="color:#275A53 ;">€<?php echo $product_p;?>
+              <del style="color: #001F23;">€<?php echo $product_d;?></del></i></p>
         </div>
       </div>
 
       <div class="row description">
         <div class="col-sm-4 col-md-3 order-2 order-sm-1">
           <ul>
-            <li>Sirpa Skateboards</li>
-            <li>Artwork by Laura Timantti</li>
-            <li>8.5" x 31.956"</li>
-            <li>Tail: 6.663"</li>
+            <?php
+              foreach ($bullets as $sentence) {
+                if (!empty($sentence)) {
+                  echo "<li>$sentence.</li>";
+                }
+              }           
+            ?>
           </ul>
         </div>
         <div class="col-sm-4 col-md-3 order-3 order-sm-2">
