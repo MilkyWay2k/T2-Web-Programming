@@ -9,7 +9,7 @@ include "databases/db.php";
   <!--Product form-->
   <div class="col-4">
     <h2>Add Product</h2>
-    <form method="post" action="">
+    <form method="post" action="" onsubmit="return valProd()" name="product">
       <input type="text" name="name" placeholder="Product name" required><br>
       <input type="text" name="desc" placeholder="Description" required><br>
       <input type="number" name="price" placeholder="Price (int)" required><br>
@@ -49,7 +49,7 @@ include "databases/db.php";
   <!--Category form-->
   <div class="col-4">
     <h2>Add Product Category</h2>
-    <form method="post" action="">
+    <form method="post" action="" onsubmit="return valCat()" name="category">
       <input type="text" name="name" placeholder="Category name" required><br>
       <input type="text" name="desc" placeholder="Description" required><br>
       <input type="submit" value="Submit" name="csubmit">
@@ -59,9 +59,9 @@ include "databases/db.php";
   <!--Product image form -->
   <div class="col-4">
     <h2>Add Product image</h2>
-    <form method="post" action="">
+    <form method="post" action="" enctype="multipart/form-data">
+      <input type="file" name="prod_image"><br>
       <input type="text" name="title" placeholder="Image title" required><br>
-      <input type="file" name="image" placeholder="Image title" required><br>
       <input type="submit" value="Submit" name="isubmit">
     </form>
   </div>
@@ -78,7 +78,8 @@ if (isset($_POST["psubmit"])) {
   $image_id = $_POST["image"];
   $sql = "insert into product (product_name, description, price, category_id, image_id)
     values('$name', '$desc', '$price', '$category_id', '$image_id')";
-  if ($conn->query($sql)) {
+    echo "<meta http-equiv='refresh' content='0'>";
+    if ($conn->query($sql)) {
     echo "Success!";
   } else {
     echo "Error 😥: " . $conn->error;
@@ -91,7 +92,8 @@ if (isset($_POST["csubmit"])) {
   $desc = $_POST["desc"];
   $sql = "insert into product_category (category_name, description)
     values('$name', '$desc')";
-  if ($conn->query($sql)) {
+    echo "<meta http-equiv='refresh' content='0'>";
+    if ($conn->query($sql)) {
     echo "Success!";
   } else {
     echo "Error 😥: " . $conn->error;
@@ -99,14 +101,12 @@ if (isset($_POST["csubmit"])) {
 }
 
 //Image submission
-//The image probably isn't saved correctly idk yet, fix later
 if (isset($_POST["isubmit"])) {
+  $image = addslashes(file_get_contents($_FILES["prod_image"]['tmp_name']));
   $title = $_POST["title"];
-  $image = $_FILES['image']['tmp_name'];
-  $imgContent = addslashes(file_get_contents($image));
-
   $sql = "insert into product_image (title, image)
-    values('$title', '$imgContent')";
+    values('$title', '$image')";
+    echo "<meta http-equiv='refresh' content='0'>";
   if ($conn->query($sql)) {
     echo "Success!";
   } else {

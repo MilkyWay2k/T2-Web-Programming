@@ -82,42 +82,25 @@ include "databases/db.php";
     </select>
 
     <div class="row">
-      <div class="col d-flex justify-content-xl-start justify-content-center">
-        <div class="card products">
-          <a href="product.php">
-            <img src="images/Product1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">brand new sakteboard skull collection </h5>
-              <p class="price">Price</p><br>
-              <p class="fw-bold" style="color:#275A53 ;">100€ <del style="color: black;">200€</del></p>
-              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-            </div>
-          </a>
-        </div>
-      </div>
       <?php
       $query = "SELECT product.product_name AS `name`, product.price AS `price`, product_image.image AS `image` FROM product INNER JOIN product_image ON product.image_id=product_image.image_id";
       $result = $conn->query($query);
-      if ($result->num_rows > 0) {
-        while ($row = mysqli_fetch_assoc($result)){
-          echo "<div class=\"col d-flex justify-content-xl-start justify-content-center\">
-          <div class=\"card products\">
-            <a href=\"product.php\">
-              <img src=" . $row['image'] . "\" class=\"card-img-top\" alt=\"...\">
-              <div class=\"card-body\">
-                <h5 class=\"card-title\">" .$row['name'] ."</h5>
-                <p class=\"price\">Price</p><br>
-                <p class=\"fw-bold\" style=\"color:#275A53 ;\">" .$row['price'] ."€</p>
-                <a href=\"#\" class=\"btn btn-danger btn-circle\"><i class=\"fa-solid fa-shopping-bag fa-md\"></i></a>
+        while ($row = mysqli_fetch_assoc($result)):
+          ?>
+          <div class="col-xl-3 col-md-4 d-flex justify-content-xl-start justify-content-center">
+          <div class="card products">
+            <a href="product.php">
+              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $row['name']; ?></h5>
+                <p class="price">Price</p><br>
+                <p class="fw-bold" style="color:#275A53 ;"><?php echo $row['price']; ?>€</p>
+                <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
               </div>
             </a>
           </div>
-        </div>";
-        }
-      }
-      else
-        echo "No products found";
-      ?>
+        </div>
+      <?php endwhile;?>
       
     </div>
   </div>

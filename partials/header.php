@@ -13,6 +13,7 @@
   <link rel="icon" href="images/Skatefavicon-16x16.png" type="image/x-icon">
   <title><?php echo $title; ?></title>
   <?php echo $extra;?>
+  <script src="../js/val.js"></script>
 </head>
 
 <body>
