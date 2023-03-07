@@ -152,6 +152,7 @@ if (isset($_POST['buy'])) {
     // Close the database connection
     mysqli_close($conn);
 
+    
   }
 
 ?>

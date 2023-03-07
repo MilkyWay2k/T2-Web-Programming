@@ -25,10 +25,11 @@ if ($conn->connect_error) {
 }
 
 //$sql = "SELECT cart_item.product_id, product.product_name, product.price FROM cart_item INNER JOIN product ON cart_item.product_id = product.product_id";
-$sql = "SELECT cart_item.quantity, products.product_name, products.price
+$sql = "SELECT  SUM(cart_item.quantity), products.product_name, products.price
         FROM cart_item
         JOIN products ON cart_item.product_id = products.product_id
-        WHERE cart_item.session_id = '$cart_id';
+        WHERE cart_item.session_id = '$cart_id'
+        GROUP BY cart_item.product_id;
         ";
 
 $result = $conn->query($sql);
