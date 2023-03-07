@@ -22,11 +22,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);   
 }
 
+//retrieve the product ID from the URL parameter
 
-
-// Query the database for all products
-$sql_product = "SELECT * FROM products";
-$result_product = $conn->query($sql_product);
+$product_wow = $_GET['link'];
 
 $query = "SELECT * FROM products";
 $result = mysqli_query($conn, $query);
@@ -120,7 +118,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         <div class="col-sm-2 offset-sm-2 offset-md-4 d-flex justify-content-end order-1 order-sm-3">
           <form action="product.php" method="POST">
             <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" style="margin: 0 10px 10px 0;">
-            <input type="hidden" name="product_id" value="<?=$product['product_id']?>">
+            <input type="hidden" name="product_id" value="<?=$product_wow?>">
             <input type="hidden" name="product_name" value="<?=$product['product_name']?>">
             <input type="hidden" name="product_price" value="<?=$product['price']?>">
             <input type="submit" class="btn btn-danger btn-sm submit-btn" name="buy" value="Buy" style="padding: 15px;">
@@ -138,6 +136,8 @@ if (isset($_POST['buy'])) {
     $product_price = $_POST['product_price'];
     $quantity = $_POST['quantity'];
 
+    echo $product_id ;
+
     
     // Insert the values into the database
     $sql = "INSERT INTO `cart_item` (session_id, product_id, quantity)
@@ -152,7 +152,7 @@ if (isset($_POST['buy'])) {
     // Close the database connection
     mysqli_close($conn);
 
-    
+
   }
 
 ?>

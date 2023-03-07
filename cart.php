@@ -25,12 +25,20 @@ if ($conn->connect_error) {
 }
 
 //$sql = "SELECT cart_item.product_id, product.product_name, product.price FROM cart_item INNER JOIN product ON cart_item.product_id = product.product_id";
-$sql = "SELECT  SUM(cart_item.quantity), products.product_name, products.price
+/*$sql = "SELECT  SUM(cart_item.quantity), products.product_name, products.price
         FROM cart_item
         JOIN products ON cart_item.product_id = products.product_id
         WHERE cart_item.session_id = '$cart_id'
         GROUP BY cart_item.product_id;
         ";
+        */
+
+$sql = "SELECT products.product_name, SUM(cart_item.quantity), SUM(products.price)
+FROM cart_item INNER JOIN products ON cart_item.product_id = products.product_id
+GROUP BY products.product_name;
+        ";
+
+
 
 $result = $conn->query($sql);
 
@@ -62,9 +70,9 @@ $result_cart = $conn->query($sql_cart);
             while($row = $result->fetch_assoc()){ 
 
           ?>
-          <div class="title"><?php echo $row['quantity']; ?>x</div>
+          <div class="title"><?php echo $row['SUM(cart_item.quantity)']; ?>x</div>
           <div class="title"><?php echo $row['product_name']; ?></div>
-          <div class="amount"><?php echo $row['price']; ?>€</div>
+          <div class="amount"><?php echo $row['SUM(products.price)']; ?>€</div>
           <br>
           <?php 
           }
