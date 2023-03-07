@@ -1,8 +1,43 @@
 <?php
+session_start();
+
+session_id();
+
 $title = "Skate Shop - Cart";
 $stylesheet = "cart";
 $extra = "";
 include "partials/header.php";
+
+
+$cart_id = session_id();
+
+$servername = "webprog23-db-1";
+$username = "root";
+$password = "password";
+$dbname = "skate_shop";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+//$sql = "SELECT cart_item.product_id, product.product_name, product.price FROM cart_item INNER JOIN product ON cart_item.product_id = product.product_id";
+$sql = "SELECT cart_item.quantity, products.product_name, products.price
+        FROM cart_item
+        JOIN products ON cart_item.product_id = products.product_id
+        WHERE cart_item.session_id = '$cart_id';
+        ";
+
+$result = $conn->query($sql);
+
+mysqli_select_db($conn, 'cart_item  ');
+$sql_cart = "SELECT * FROM cart_item";
+$result_cart = $conn->query($sql_cart);
+
+
 ?>
 
   <div class="container">
@@ -21,9 +56,22 @@ include "partials/header.php";
       </div>
       <div class="col-md-6">
         <div class="prices">
-          <div class="title">Super cool skateboard</div>
-          <div class="amount">100€</div>
+          <?php 
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()){ 
+
+          ?>
+          <div class="title"><?php echo $row['quantity']; ?>x</div>
+          <div class="title"><?php echo $row['product_name']; ?></div>
+          <div class="amount"><?php echo $row['price']; ?>€</div>
           <br>
+          <?php 
+          }
+          } else{
+            echo "<p>your cart is empty.</p>";
+          }
+          ?>
+
           <div class="title">Shipping</div>
           <div class="amount">5€</div>
           <div class="total">

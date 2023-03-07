@@ -5,6 +5,7 @@ session_start();
 // get the current session ID or generate a new one
 $session_id = session_id();
 
+
 $title = "Skate Shop - Super coooool skateboard";
 $stylesheet = "shop";
 $extra = "";
@@ -117,7 +118,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         </div>
 
         <div class="col-sm-2 offset-sm-2 offset-md-4 d-flex justify-content-end order-1 order-sm-3">
-          <form action="cart.php" method="POST">
+          <form action="product.php" method="POST">
             <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" style="margin: 0 10px 10px 0;">
             <input type="hidden" name="product_id" value="<?=$product['product_id']?>">
             <input type="hidden" name="product_name" value="<?=$product['product_name']?>">
