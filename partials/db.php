@@ -1,9 +1,9 @@
 <?php
 
-$servername = "webprog23-db-1";
+$servername = "web-dev-env-main-db-1";
 $username = "root";
 $password = "password";
-$dbname = "skate_shop";
+$dbname = "skate_shop_test";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

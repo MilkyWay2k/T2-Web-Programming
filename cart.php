@@ -94,7 +94,6 @@ $result_cart = $conn->query($sql_cart);
             <br>
             <br>
           </div>
->>>>>>> main
         </div>
       </div>
     </div>
