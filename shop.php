@@ -3,7 +3,22 @@ $title = "Skate Shop - Shop Page";
 $stylesheet = "shop";
 $extra = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css    \">";
 include "partials/header.php";
+
+include "partials/db.php";
+
+
+mysqli_select_db($conn, 'products');
+$sql_product = "SELECT * FROM products";
+$result_product = $conn->query($sql_product);
+
+
+$sql_category = "SELECT * FROM product_category";
+$result_category = $conn->query($sql_category);
+
 ?>
+
+
+
 
   <div class="container category">
     <div class="col-12 p-4 breadcrumbs">
@@ -16,56 +31,48 @@ include "partials/header.php";
       </a>
     </div>
 
+    <?php
+                    $sql_items = "SELECT pc.category_id, COUNT(p.product_id) as product_count
+                    FROM product_category pc
+                    LEFT JOIN products p
+                    ON pc.category_id = p.category_id
+                    GROUP BY pc.category_id;";
+
+                    $result_items = $conn->query($sql_items);
+
+                    ?>
+
+
     <div class="row d-flex justify-content-center justify-content-md-start">
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">skateboard</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
+          <?php
+            while($row = $result_category->fetch_assoc()):
+          ?>  
+              <div class="card col-4 text-md catcard">
+                <a href="#">
+                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img" alt="<?php echo $row['category_name']; ?> ">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title card-title-category"><?php echo $row['category_name']; ?></h5>
+                    <p class="card-text"><small><?php
 
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory3.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">clothes</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
+                     if (!$result_items) {
+                      die("Query failed: " . $conn->error);
+                  }
 
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">stickers</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
+                    if ($result_items->num_rows > 0) {
+                        $row = $result_items->fetch_assoc();
+                        $product_count = $row["product_count"];
 
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">fingerboard</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
 
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">others</h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
+                    }else if($result_items->num_rows <= 0){
+                        $product_count = 0;
+                    }
+                    echo $product_count; ?> items</small></p>
+                  </div>
+                </a>
+              </div>
+      <?php endwhile; ?>
+      
+    </div>
     </div>
   </div>
 
@@ -81,61 +88,31 @@ include "partials/header.php";
     </select>
 
     <div class="row">
-      <div class="col d-flex justify-content-xl-start justify-content-center">
-        <div class="card products">
-          <a href="product.php">
-            <img src="images/Product1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">brand new sakteboard skull collection </h5>
-              <p class="price">Price</p><br>
-              <p class="fw-bold" style="color:#275A53 ;">100€ <del style="color: black;">200€</del></p>
-              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-            </div>
-          </a>
-        </div>
-      </div>
+    <div class="row">
+      
 
-      <div class="col d-flex justify-content-xl-start justify-content-center">
-        <div class="card products">
-          <a href="product.php">
-            <img src="images/Product1.png" class=" card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">brand new sakteboard skull collection </h5>
-              <p class="price">Price</p><br>
-              <p class="fw-bold" style="color: #275A53;">100€ <del style="color: black;">200€</del></p>
-              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-            </div>
-          </a>
-        </div>
-      </div>
 
-      <div class="col d-flex justify-content-xl-start justify-content-center">
+      <?php
+        while($row = $result_product->fetch_assoc()):
+          
+      ?>
+      <div class="col-xl-3 col-md-4 d-flex justify-content-xl-start justify-content-center">
         <div class="card products">
-          <a href="product.php">
-            <img src="images/Product1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">brand new sakteboard skull collection </h5>
-              <p class="price">Price</p><br>
-              <p class="fw-bold" style="color:#275A53;">100€ <del style="color: black;">200€</del></p>
-              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-            </div>
-          </a>
+          <a href="product.php?link=<?php echo $row['product_id']; ?>&name=<?php echo $row['product_name']; ?>&price=<?php echo $row['price']; ?>&discount=<?php echo $row['discount']; ?>">
+              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="<?php echo $row['product_name']; ?>" height='175.91' width='280'/>
+              <div class="card-body">
+                    <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
+                    <p class="price">Price</p><br>
+                    <p class="fw-bold" style="color:#275A53;"><?php echo $row['price']; ?>€ <del style="color: black;"><?php echo $row['discount']; ?>€</del></p>
+                    <a href="product.php" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
+              </div>
+          </a>  
         </div>
       </div>
-
-      <div class="col d-flex justify-content-xl-start justify-content-center">
-        <div class="card products">
-          <a href="product.php">
-            <img src="images/Product1.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">brand new sakteboard skull collection </h5>
-              <p class="price">Price</p><br>
-              <p class="fw-bold" style="color:#275A53;">100€ <del style="color: black;">200€</del></p>
-              <a href="#" class="btn btn-danger btn-circle"><i class="fa-solid fa-shopping-bag fa-md"></i></a>
-            </div>
-          </a>
-        </div>
-      </div>
+      
+      <?php endwhile; ?>
+    </div>
+  </div>
     </div>
   </div>
 
