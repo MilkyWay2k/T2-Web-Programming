@@ -9,9 +9,6 @@ $extra = "";
 include "partials/header.php";
 
 
-
-
-
 $cart_id = session_id();
 
 include "partials/db.php";
@@ -35,9 +32,6 @@ $result = $conn->query($sql);
 mysqli_select_db($conn, 'cart_item  ');
 $sql_cart = "SELECT * FROM cart_item";
 $result_cart = $conn->query($sql_cart);
-
-
-
 
 
 ?>
