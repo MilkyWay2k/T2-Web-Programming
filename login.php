@@ -20,7 +20,6 @@ include "partials/header.php";
         <div class="mb-3 col-12 col-md-4">
             <button type="submit" class="btn btn-success" href="shop.php">Log in</button>
             <a class="reg" href="registration.php">Registration</a>
-            <a href="#">Forgot password?</a>
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">

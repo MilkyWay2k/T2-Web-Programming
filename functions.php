@@ -65,7 +65,7 @@ function uidExists($conn, $username, $email) {
     }
     mysqli_stmt_close($stmt);
 }
-function createUser($conn, $f_name, $l_name, $username, $email, $pwd) {
+function createUser($conn, $username, $pwd, $email, $f_name, $l_name) {
     $sql = "INSERT INTO customer (username, password, email, f_name, l_name) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
