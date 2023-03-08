@@ -49,8 +49,8 @@
           <ul class="navbar-nav mb-2 mb-lg-0 cart">
             <?php
             if (isset($_SESSION["useruid"])) {
-              echo "<li><a href='profile.php'>My Profile</a></li>";
-              echo "<li><a href='logout.php'>Log out</a></li>";
+              echo "<li class='nav-item'><a class='nav-link active' href='profile.php'>My Profile</a></li>";
+              echo "<li class='nav-item'><a class='nav-link active' href='logout.php'>Log out</a></li>";
             } else {
               echo " <li class='nav-item'><a class='nav-link active' href='login.php'><img src='images/Icons/skate.png' alt='login' width='30'
                     height='30'></a></li>";
