@@ -1,0 +1,35 @@
+
+/*Registration / login Forms*/
+.reg_form h3 {
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  .reg_form input {
+    height: 3.3rem;
+  }
+  
+  .reg_form a {
+    transition: all .3s;
+    margin-left: 60px;
+  }
+  
+  .reg_form a:hover {
+    margin-left: 55px;
+    transition: all .3s;
+  }
+  
+  .btn {
+    background-color: #275A53;
+    color: #F5F0E3;
+  }
+  
+  .msg {
+    background-color: #E3492B;
+    color: #F5F0E3;
+    border: 2px solid;
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
