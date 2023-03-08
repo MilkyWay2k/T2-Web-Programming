@@ -1,9 +1,35 @@
 <?php
+session_start();
+
+session_id();
+
 $title = "Skate Shop - Cart";
 $stylesheet = "cart";
 $extra = "";
 include "partials/header.php";
-include "databases/db.php";
+$cart_id = session_id();
+
+include "partials/db.php";
+
+
+//$sql = "SELECT cart_item.product_id, product.product_name, product.price FROM cart_item INNER JOIN product ON cart_item.product_id = product.product_id";
+/*$sql = "SELECT  SUM(cart_item.quantity), products.product_name, products.price
+        FROM cart_item
+        JOIN products ON cart_item.product_id = products.product_id
+        WHERE cart_item.session_id = '$cart_id'
+        GROUP BY cart_item.product_id;
+        ";
+        */
+
+$sql = "SELECT products.product_name, SUM(cart_item.quantity) AS quantity, MIN(products.price)*SUM(cart_item.quantity) AS total_price
+FROM cart_item INNER JOIN products ON cart_item.product_id = products.product_id
+GROUP BY products.product_name;
+        ";
+$result = $conn->query($sql);
+
+mysqli_select_db($conn, 'cart_item  ');
+$sql_cart = "SELECT * FROM cart_item";
+$result_cart = $conn->query($sql_cart);
 ?>
 
 <div class="container">
@@ -15,24 +41,56 @@ include "databases/db.php";
       <img src="images/Icons/ArrowRight.png">
       <b>Cart</b>
     </div>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-md-6 justify-content-center" style="margin-bottom: 10px;">
-      <img src="images/Product2.png" class="thumbnail">
-    </div>
-    <div class="col-md-6">
-      <div class="prices">
-        <div class="title">Super cool skateboard</div>
-        <div class="amount">100€</div>
-        <br>
-        <div class="title">Shipping</div>
-        <div class="amount">5€</div>
-        <div class="total">
-          <hr>
-          <div class="title"><b>Total</b></div>
-          <div class="amount">105€</div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6 justify-content-center" style="margin-bottom: 10px;">
+        <img src="images/Product2.png" class="thumbnail">
+      </div>
+      <div class="col-md-6">
+        <div class="prices">
+          <?php 
+          if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()){ 
+
+          ?>
+          <div class="title"><?php echo $row['quantity']; ?>x</div>
+          <div class="title"><?php echo $row['product_name']; ?></div>
+          <div class="amount"><?php echo $row['total_price']; ?>€</div>
           <br>
-          <p class="subtext">Including 25,2€ in taxes</p>
+          <?php 
+          }
+          } else{
+            echo "<p>your cart is empty.</p>";
+          }
+          ?>
+
+          <div class="title">Shipping</div>
+          <div class="amount">5€</div>
+          <div class="total">
+            <hr>
+            <div class="title"><b>Total</b></div>
+            <div class="amount">
+              <?php
+            $sql = "SELECT SUM(total_price)+5 AS total
+            FROM (
+              SELECT (MIN(products.price)*SUM(cart_item.quantity)) AS total_price
+              FROM cart_item INNER JOIN products ON cart_item.product_id = products.product_id
+                GROUP BY products.product_name
+            ) AS yes";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()){ 
+                echo $row['total'];
+            }
+            } else{
+              echo "<p>your cart is empty.</p>";
+            }
+            ?>€</div>
+            <br>
+            <br>
+          </div>
+>>>>>>> main
         </div>
       </div>
     </div>
