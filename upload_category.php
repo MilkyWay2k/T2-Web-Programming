@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 ?>
 
 
-<a href="upload_products.php">uploat product</a>
+<a href="upload_products.php">upload product</a>
 <h1>Create Category</h1>
 <form action="upload_category.php" method="post" enctype="multipart/form-data">
     <label for="category_name">Category Name:</label>
@@ -71,12 +71,41 @@ if (isset($_POST['submit'])) {
         while($row = $result->fetch_assoc()) {
             echo "Category ID: " . $row["category_id"] . "<br>";
             echo "Category Name: " . $row["category_name"] . "<br>";
-            echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['category_image'] ).'"/><br>';
+            echo '<img src="data:image/jpeg;base64,'.base64_encode( $row['category_image'] ).'"/>';
+            
+            //update category ID and name
+            echo "
+            <form action='update_category.php' method='POST'>
+                <input type='hidden' name='category_id' value='". $row['category_id'] ."'>
+                <label for='new_category_id'>New Category ID:</label>
+                <input type='text' id='new_category_id' name='new_category_id' value='". $row['category_id'] ."'><br>
+                <label for='new_category_name'>New Category Name:</label>
+                <input type='text' id='new_category_name' name='new_category_name' value='". $row['category_name'] ."'><br>
+                <input type='submit' name='update' value='Update'>
+            </form>";
+            
+            //delete category
+            echo "
+            <form action='upload_category.php' method='POST'>
+            <input type='hidden' name='category_id' value='". $row['category_id'] ."'>
+            <input type='submit' name='delete' value='Delete'>
+            </form>";
             echo "<hr>";
+            
         }
-    } else {
+    }else {
         echo "No categories found.";
     }
+    if (isset($_POST['delete'])) {
+        $category_id = $_POST['category_id'];
+        $query_delete = "DELETE FROM product_category WHERE category_id = $category_id";
+        mysqli_query($conn, $query_delete);
+        header("Location: upload_category.php");
+        exit;
+    }else{
+        echo "cannot delete";
+    }
+
     
     // Close the database connection
 ?>

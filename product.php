@@ -31,8 +31,18 @@ $product_d = $_GET['discount'];
 //printing correct image to the product
 $sql_image = "SELECT image FROM products WHERE product_id = $product_wow";
 $result_image = mysqli_query($conn, $sql_image);
-$product = mysqli_fetch_assoc($result_image);
-$image_data = $product['image'];
+$product_img = mysqli_fetch_assoc($result_image);
+$image_data = $product_img['image'];
+
+//printing correct desciption to the product
+$sql_desc = "SELECT description FROM products WHERE product_id = $product_wow";
+$result_desc = mysqli_query($conn, $sql_desc);
+$product_desc = mysqli_fetch_assoc($result_desc);
+$desc_data = $product_desc['description'];
+
+$bullets = explode(".", $desc_data);
+
+
 
 $query = "SELECT * FROM products";
 $result = mysqli_query($conn, $query);
@@ -46,13 +56,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 
 
-//printing correct desciption to the product
-$sql_desc = "SELECT description FROM products WHERE product_id = $product_wow";
-$result_desc = mysqli_query($conn, $sql_desc);
-$product_desc = mysqli_fetch_assoc($result_desc);
-$desc_data = $product_desc['description'];
-
-$bullets = explode(".", $desc_data);
 
 
 
@@ -168,7 +171,7 @@ if (isset($_POST['buy'])) {
         </div>
 
         <div class="col-sm-2 offset-sm-2 offset-md-4 d-flex justify-content-end order-1 order-sm-3">
-          <form action="product.php" method="POST">
+          <form action="shop.php" method="POST">
             <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" style="margin: 0 10px 10px 0;">
             <input type="hidden" name="product_id" value="<?=$product_wow?>">
             <input type="hidden" name="product_name" value="<?=$product['product_name']?>">
