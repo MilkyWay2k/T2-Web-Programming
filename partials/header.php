@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -11,8 +14,10 @@
   <link rel="stylesheet" href="css/<?php echo $stylesheet; ?>.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="images/Skatefavicon-16x16.png" type="image/x-icon">
-  <title><?php echo $title; ?></title>
-  <?php echo $extra;?>
+  <title>
+    <?php echo $title; ?>
+  </title>
+  <?php echo $extra; ?>
 </head>
 
 <body>
@@ -42,10 +47,19 @@
             </li>
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0 cart">
+            <?php
+            if (isset($_SESSION["useruid"])) {
+              echo "<li><a href='profile.php'>My Profile</a></li>";
+              echo "<li><a href='logout.php'>Log out</a></li>";
+            } else {
+              echo " <li class='nav-item'><a class='nav-link active' href='login.php'><img src='images/Icons/skate.png' alt='login' width='30'
+                    height='30'></a></li>";
+            }
+            ?>
             <li class="nav-item">
               <a class="nav-link active" href="#"><img src="images/Icons/search.png" alt="search" width="30"
                   height="30"></a>
-            </li>
+                  </li>
             <li class="nav-item">
               <a class="nav-link active" href="cart.php">
               <?php
