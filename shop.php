@@ -50,7 +50,7 @@ $result_category = $conn->query($sql_category);
           ?>  
               <div class="card col-4 text-md catcard">
                 <a href="#">
-                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img" alt="<?php echo $row['category_name']; ?>">
+                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img" alt="<?php echo $row['category_name']; ?> ">
                   <div class="card-img-overlay">
                     <h5 class="card-title card-title-category"><?php echo $row['category_name']; ?></h5>
                     <p class="card-text"><small><?php
@@ -103,7 +103,7 @@ $result_category = $conn->query($sql_category);
       <div class="col-xl-3 col-md-4 d-flex justify-content-xl-start justify-content-center">
         <div class="card products">
           <a href="product.php?link=<?php echo $row['product_id']; ?>&name=<?php echo $row['product_name']; ?>&price=<?php echo $row['price']; ?>&discount=<?php echo $row['discount']; ?>">
-              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="<?php echo $row['product_name']; ?>"/>
+              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="<?php echo $row['product_name']; ?>" height='175.91' width='280'/>
               <div class="card-body">
                     <h5 class="card-title"><?php echo $row['product_name']; ?></h5>
                     <p class="price">Price</p><br>
