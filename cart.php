@@ -157,6 +157,7 @@ $result_cart = $conn->query($sql_cart);
     </div>
   </div>
 </div>
+<script src="js/val1.js"></script>
 
 <?php
 if (isset($_POST["submit"])) {
@@ -173,7 +174,7 @@ if (isset($_POST["submit"])) {
   $sql = "insert into product_purchase (fname, lname, email, delivery, address, postalCode, city, phone, company)
     values('$fname', '$lname', '$email', '$delivery', '$address', '$postalCode', '$city', '$phone', '$company')";
     if ($conn->query($sql)) {
-    echo "<script type=\"text/javascript\">toPayment();</script>";
+    //echo "<script type=\"text/javascript\">toPayment();</script>";
   } else {
     echo "Error 😥: " . $conn->error;
   }

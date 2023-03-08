@@ -47,8 +47,19 @@
                   height="30"></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="cart.php"><img src="images/Icons/Shoppingcart.png" alt="cart" width="30"
-                  height="30"></a>
+              <a class="nav-link active" href="cart.php">
+              <?php
+            include "partials/db.php";
+            $query = "SELECT * FROM cart_item";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+              echo "<img src=\"images/Icons/ShoppingcartNotification.png\" alt=\"cart\" width=\"30\" height=\"30\">";
+            }
+            else{
+              echo "<img src=\"images/Icons/Shoppingcart.png\" alt=\"cart\" width=\"30\" height=\"30\">";
+            }
+            ?>
+                </a>
             </li>
           </ul>
         </div>
