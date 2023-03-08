@@ -171,7 +171,7 @@ if (isset($_POST['buy'])) {
         </div>
 
         <div class="col-sm-2 offset-sm-2 offset-md-4 d-flex justify-content-end order-1 order-sm-3">
-          <form action="shop.php" method="POST">
+          <form action="<?php echo $_SERVER['REQUEST_URI'];?>" method="POST">
             <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" style="margin: 0 10px 10px 0;">
             <input type="hidden" name="product_id" value="<?=$product_wow?>">
             <input type="hidden" name="product_name" value="<?=$product['product_name']?>">

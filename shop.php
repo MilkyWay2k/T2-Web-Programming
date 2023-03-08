@@ -48,15 +48,32 @@ $result_category = $conn->query($sql_category);
           <?php
             while($row = $result_category->fetch_assoc()):
           ?>  
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img" alt="<?php echo $row['category_name']; ?>">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category"><?php echo $row['category_name']; ?></h5>
-            <p class="card-text"><small>12 items</small></p>
-          </div>
-        </a>
-      </div>
+              <div class="card col-4 text-md catcard">
+                <a href="#">
+                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img" alt="<?php echo $row['category_name']; ?>">
+                  <div class="card-img-overlay">
+                    <h5 class="card-title card-title-category"><?php echo $row['category_name']; ?></h5>
+                    <p class="card-text"><small><?php
+                    $sql_items = "SELECT COUNT(*) AS product_count FROM products 
+                    INNER JOIN product_category ON products.category_id = product_category.category_id
+                    GROUP BY products.category_id;";
+
+                    $result_items = $conn->query($sql_items);
+                    
+                    if (!$result_items) {
+                      die("Query failed: " . $conn->error);
+                  }
+
+                    if ($result_items->num_rows > 0) {
+                        $row = $result_items->fetch_assoc();
+                        $product_count = $row["product_count"];
+                  
+                        echo $product_count;
+                    }
+                    ?> items</small></p>
+                  </div>
+                </a>
+              </div>
       <?php endwhile; ?>
       
     </div>
@@ -83,7 +100,7 @@ $result_category = $conn->query($sql_category);
         while($row = $result_product->fetch_assoc()):
           
       ?>
-      <div class="col d-flex justify-content-xl-start justify-content-center">
+      <div class="col-xl-3 col-md-4 d-flex justify-content-xl-start justify-content-center">
         <div class="card products">
           <a href="product.php?link=<?php echo $row['product_id']; ?>&name=<?php echo $row['product_name']; ?>&price=<?php echo $row['price']; ?>&discount=<?php echo $row['discount']; ?>">
               <img src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>" class="card-img-top" alt="<?php echo $row['product_name']; ?>"/>

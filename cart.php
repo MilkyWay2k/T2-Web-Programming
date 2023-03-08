@@ -37,9 +37,6 @@ $sql = "SELECT products.product_name, SUM(cart_item.quantity) AS quantity, MIN(p
 FROM cart_item INNER JOIN products ON cart_item.product_id = products.product_id
 GROUP BY products.product_name;
         ";
-
-
-
 $result = $conn->query($sql);
 
 mysqli_select_db($conn, 'cart_item  ');
@@ -86,9 +83,26 @@ $result_cart = $conn->query($sql_cart);
           <div class="total">
             <hr>
             <div class="title"><b>Total</b></div>
-            <div class="amount">105€</div>
+            <div class="amount">
+              <?php
+            $sql = "SELECT SUM(total_price)+5 AS total
+            FROM (
+              SELECT (MIN(products.price)*SUM(cart_item.quantity)) AS total_price
+              FROM cart_item INNER JOIN products ON cart_item.product_id = products.product_id
+                GROUP BY products.product_name
+            ) AS yes";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+              while($row = $result->fetch_assoc()){ 
+                echo $row['total'];
+            }
+            } else{
+              echo "<p>your cart is empty.</p>";
+            }
+            ?>€</div>
             <br>
-            <p class="subtext">Including 25,2€ in taxes</p>
+            <br>
           </div>
         </div>
       </div>
