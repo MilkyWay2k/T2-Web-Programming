@@ -72,7 +72,6 @@ function valProd(){
     alert("Image must be JPG or PNG");
     return false;
   }
-alert("aa");
   if(prodBrand.length<2){
     alert("Product brand must be at least 2 characters long");
     return false;
