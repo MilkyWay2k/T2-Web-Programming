@@ -59,9 +59,9 @@ session_start();
             <li class="nav-item">
               <a class="nav-link active" href="#"><img src="images/Icons/search.png" alt="search" width="30"
                   height="30"></a>
-            </li>
+                  </li>
             <li class="nav-item">
-            <a class="nav-link active" href="cart.php">
+              <a class="nav-link active" href="cart.php">
               <?php
             include "partials/db.php";
             $query = "SELECT * FROM cart_item";
