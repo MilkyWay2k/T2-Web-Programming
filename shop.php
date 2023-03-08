@@ -4,18 +4,8 @@ $stylesheet = "shop";
 $extra = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css    \">";
 include "partials/header.php";
 
-$servername = "webprog23-db-1";
-$username = "root";
-$password = "password";
-$dbname = "skate_shop";
+include "partials/db.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 mysqli_select_db($conn, 'products');
 $sql_product = "SELECT * FROM products";

@@ -11,16 +11,8 @@ $stylesheet = "shop";
 $extra = "";
 include "partials/header.php";
 
-$servername = "webprog23-db-1";
-$username = "root";
-$password = "password";
-$dbname = "skate_shop";
+include "partials/db.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);   
-}
 
 //retrieve the product ID from the URL parameter
 $product_wow = $_GET['link'];

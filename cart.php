@@ -11,18 +11,8 @@ include "partials/header.php";
 
 $cart_id = session_id();
 
-$servername = "webprog23-db-1";
-$username = "root";
-$password = "password";
-$dbname = "skate_shop";
+include "partials/db.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 //$sql = "SELECT cart_item.product_id, product.product_name, product.price FROM cart_item INNER JOIN product ON cart_item.product_id = product.product_id";
 /*$sql = "SELECT  SUM(cart_item.quantity), products.product_name, products.price

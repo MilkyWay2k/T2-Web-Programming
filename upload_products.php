@@ -3,19 +3,8 @@ $title = "Skate Shop - Shop Page";
 $stylesheet = "shop";
 $extra = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css    \">";
 include "partials/header.php";
+include "partials/db.php";
 
-$servername = "webprog23-db-1";
-$username = "root";
-$password = "password";
-$dbname = "skate_shop";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 
 
