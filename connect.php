@@ -1,6 +1,6 @@
 <?php
 
-$serverName = "web-dev-env-main-db-1";
+$serverName = "webprog23-db-1";
 $dbUsername = "root";
 $dbPassword = "password";
 $dbName = "customer";
