@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `blog` (
-  `article_id` int NOT NULL,
+  `article_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `title` varchar(80) NOT NULL,
   `customer_id` int NOT NULL,
   `content` varchar(800) NOT NULL,
@@ -57,8 +57,8 @@ CREATE TABLE `cart_item` (
 --
 
 CREATE TABLE `comment` (
+  `comment_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `article_id` int NOT NULL,
-  `comment_id` int NOT NULL,
   `author_id` int NOT NULL,
   `text` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -70,7 +70,7 @@ CREATE TABLE `comment` (
 --
 
 CREATE TABLE `customer` (
-  `customer_id` int NOT NULL,
+  `customer_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `password` text NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -85,18 +85,23 @@ CREATE TABLE `customer` (
 --
 
 CREATE TABLE `product` (
-  `product_id` int NOT NULL,
+  `product_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `product_name` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `sku` varchar(100) NOT NULL,
+  --`sku` varchar(100) NOT NULL,            Probably unecessary for us?
   `category_id` int NOT NULL,
-  `inventory_id` int NOT NULL,
+  --`inventory_id` int NOT NULL,           Disabled for now, might not use it
   `price` decimal(10,0) NOT NULL,
-  `discount_id` int NOT NULL,
-  `product_img` varchar(100) NOT NULL,
-  `update_date` timestamp NOT NULL
+  --`discount_id` int NOT NULL,             Same here
+  `image_id` int NOT NULL,
+  `update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `product_image` (
+  `image_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `image` BLOB NOT NULL,
+  `title` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 -- --------------------------------------------------------
 
 --
@@ -104,7 +109,7 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `product_category` (
-  `category_id` int NOT NULL,
+  `category_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `category_name` varchar(100) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -127,80 +132,9 @@ CREATE TABLE `product_inventory` (
 --
 
 CREATE TABLE `shopping_session` (
-  `session_id` int NOT NULL,
+  `session_id` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `customer_id` int NOT NULL,
   `total` decimal(10,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `blog`
---
-ALTER TABLE `blog`
-  ADD PRIMARY KEY (`article_id`);
-
---
--- Indexes for table `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`comment_id`);
-
---
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`customer_id`);
-
---
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`product_id`,`category_id`,`inventory_id`,`discount_id`);
-
---
--- Indexes for table `shopping_session`
---
-ALTER TABLE `shopping_session`
-  ADD PRIMARY KEY (`session_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `blog`
---
-ALTER TABLE `blog`
-  MODIFY `article_id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `comment`
---
-ALTER TABLE `comment`
-  MODIFY `comment_id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `customer`
---
-ALTER TABLE `customer`
-  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `shopping_session`
---
-ALTER TABLE `shopping_session`
-  MODIFY `session_id` int NOT NULL AUTO_INCREMENT;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
