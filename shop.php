@@ -41,7 +41,16 @@ $result_category = $conn->query($sql_category);
       </a>
     </div>
 
-    
+    <?php
+                    $sql_items = "SELECT pc.category_id, COUNT(p.product_id) as product_count
+                    FROM product_category pc
+                    LEFT JOIN products p
+                    ON pc.category_id = p.category_id
+                    GROUP BY pc.category_id;";
+
+                    $result_items = $conn->query($sql_items);
+
+                    ?>
 
 
     <div class="row d-flex justify-content-center justify-content-md-start">
@@ -54,23 +63,20 @@ $result_category = $conn->query($sql_category);
                   <div class="card-img-overlay">
                     <h5 class="card-title card-title-category"><?php echo $row['category_name']; ?></h5>
                     <p class="card-text"><small><?php
-                    $sql_items = "SELECT COUNT(*) AS product_count FROM products 
-                    INNER JOIN product_category ON products.category_id = product_category.category_id
-                    GROUP BY products.category_id;";
 
-                    $result_items = $conn->query($sql_items);
-                    
-                    if (!$result_items) {
+                     if (!$result_items) {
                       die("Query failed: " . $conn->error);
                   }
 
                     if ($result_items->num_rows > 0) {
                         $row = $result_items->fetch_assoc();
                         $product_count = $row["product_count"];
-                  
-                        echo $product_count;
+
+
+                    }else if($result_items->num_rows <= 0){
+                        $product_count = 0;
                     }
-                    ?> items</small></p>
+                    echo $product_count; ?> items</small></p>
                   </div>
                 </a>
               </div>
