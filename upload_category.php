@@ -8,19 +8,20 @@ include "partials/db.php";
 
 
 ?>
+<script src="js/val1.js"></script>
 <div class="container">
 
 
 <a href="upload_products.php">upload product</a>
 <h1>Create Category</h1>
-<form action="upload_category.php" method="post" enctype="multipart/form-data">
+<form action="upload_category.php" method="post" enctype="multipart/form-data" name="cat">
     <label for="category_name">Category Name:</label>
     <input type="text" name="category_name" id="category_name">
     <br>
     <label>Category Image:</label>
     <input type="file" name="category_image"><br><br>
     <input type="hidden" name="submitted" value="true">
-    <input type="submit" name="submit" value="Add Category">
+    <input type="submit" name="submit" value="Add Category" onclick="return valCat()">
 </form>
 
 <?php
@@ -66,7 +67,7 @@ if (isset($_POST['submit'])) {
 
             //update category ID and name
             echo "
-            <form action='upload_category.php' method='POST'>
+            <form action='upload_category.php' method='POST' name='update'>
                 <input type='hidden' name='category_id' value='". $row['category_id'] ."'>
 
                 <label for='new_category_id'>New Category ID:</label>
@@ -75,7 +76,7 @@ if (isset($_POST['submit'])) {
                 <label for='new_category_name'>New Category Name:</label>
                 <input type='text' name='new_category_name' value='". $row['category_name'] ."'><br>
 
-                <input type='submit' name='update' value='Update'>
+                <input type='submit' name='update' value='Update' onclick='return valUp()'>
             </form>";
             
             //delete category

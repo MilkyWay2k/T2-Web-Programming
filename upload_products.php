@@ -9,7 +9,7 @@ include "partials/db.php";
 
 
 ?>
-
+<script src="js/val1.js"></script>
 
 
 <div class="container">
@@ -17,27 +17,27 @@ include "partials/db.php";
     <a href="upload_category.php">upload category</a>
 
     <h1>Upload Product</h1>
-        <form action="upload_products.php" method="post" enctype="multipart/form-data">
+        <form action="upload_products.php" method="post" enctype="multipart/form-data" name="prod">
             <label>Product Name:</label>
-            <input type="text" name="product_name"><br><br>
+            <input type="text" name="product_name" required><br><br>
 
             <label>Price:</label>
-            <input type="text" name="price"><br><br>
+            <input type="text" name="price" required><br><br>
 
             <label>Discount:</label>
-            <input type="text" name="discount"><br><br>
+            <input type="text" name="discount" required><br><br>
 
             <label>Description:</label>
-            <textarea name="description"></textarea><br><br>
+            <textarea name="description" required></textarea><br><br>
 
             <label>Image:</label>
-            <input type="file" name="image"><br><br>
+            <input type="file" name="image" required><br><br>
 
             <label>Brand Name:</label>
-            <input type="text" name="brandname"><br><br>
+            <input type="text" name="brandname" required><br><br>
 
             <label for="category_id">Category:</label>
-            <select name="category_id" id="category_id">
+            <select name="category_id" id="category_id" required>
                 <?php
                     // Select all categories from the database
                 $sql = "SELECT * FROM product_category";
@@ -50,9 +50,9 @@ include "partials/db.php";
                 ?>
             </select><br>
             <label>Featured:</label>
-            <input type="number" name="featured" value="1"><br><br>
+            <input type="number" name="featured" value="1" required><br><br>
 
-            <input type="submit" value="Upload">
+            <input type="submit" value="Upload" onclick="return valProd()">
         </form>
 
 

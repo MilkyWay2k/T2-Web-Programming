@@ -47,35 +47,44 @@ $result_category = $conn->query($sql_category);
     <?php
     while ($row = $result_category->fetch_assoc()):
       ?>
-      <div class="card col-4 text-md catcard">
-        <a href="#">
-          <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img"
-            alt="<?php echo $row['category_name']; ?> ">
-          <div class="card-img-overlay">
-            <h5 class="card-title card-title-category">
-              <?php echo $row['category_name']; ?>
-            </h5>
-            <p class="card-text"><small>
-                <?php
+        <div class="card col-4 text-md catcard">
+          <a href="shop.php?link=<?php echo $row['category_id']; ?>">
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img"
+              alt="<?php echo $row['category_name']; ?> ">
+            <div class="card-img-overlay">
+              <h5 class="card-title card-title-category">
+                <?php echo $row['category_name']; ?>
+              </h5>
+              <p class="card-text"><small>
+                  <?php
 
-                if (!$result_items) {
-                  die("Query failed: " . $conn->error);
-                }
+                  if (!$result_items) {
+                    die("Query failed: " . $conn->error);
+                  }
 
-                if ($result_items->num_rows > 0) {
-                  $row = $result_items->fetch_assoc();
-                  $product_count = $row["product_count"];
+                  if ($result_items->num_rows > 0) {
+                    $row = $result_items->fetch_assoc();
+                    $product_count = $row["product_count"];
 
 
-                } else if ($result_items->num_rows <= 0) {
-                  $product_count = 0;
-                }
-                echo $product_count; ?> items
-              </small></p>
-          </div>
-        </a>
-      </div>
+                  } else if ($result_items->num_rows <= 0) {
+                    $product_count = 0;
+                  }
+                  echo $product_count; ?> items
+                </small></p>
+            </div>
+          </a>
+        </div>
     <?php endwhile; ?>
+
+    <?php
+    if (isset($_GET["link"])) {
+      $cat = $_GET["link"];
+      $sql_product .= " WHERE category_id = $cat";
+      $result_product = $conn->query($sql_product);
+    }
+
+    ?>
 
   </div>
 </div>

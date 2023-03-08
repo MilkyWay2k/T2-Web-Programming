@@ -1,27 +1,63 @@
-//create_product.php validation
-function valProd(){
-  let name = document.forms["product"]["name"].value.trim();
-  let desc = document.forms["product"]["desc"].value.trim();
-  let price = document.forms["product"]["price"].value.trim();
-
-  if(name.length<5){
-    alert("Product name must be at least 5 characters long");
-    return false;
-  }
-  if(desc.length<15){
-    alert("Product description must be at least 15 characters long");
-    return false;
-  }
-  if(isNaN(price)){
-    alert("Product price must be a number");
-  }
-}
-
+//upload_category.php validation
 function valCat(){
-  let name = document.forms["category"]["name"].value.trim();
-  let imageExtension = document.forms["category"]["category_image"].value.split('.').pop().toLowerCase();
-  if(name.length<5){
-    alert("Category name must be at least 5 characters long");
+  let catName = document.forms["cat"]["category_name"].value.trim();
+  let imageExtension = document.forms["cat"]["category_image"].value.split('.').pop().toLowerCase();
+  var isValidFile = false;
+  var allowedExtension = ['jpeg', 'jpg', 'png'];
+  for(var index in allowedExtension) {
+    if(imageExtension === allowedExtension[index]) {
+        isValidFile = true; 
+        break;
+    }
+  }
+  if (!isValidFile) {
+    alert("Image must be JPG or PNG");
+    return false;
+  }
+
+  if(catName.length<2){
+    alert("First name must be at least 2 characters long");
+    return false;
+  }
+}
+
+function valUp() {
+  
+  let catID = document.forms["update"]["new_category_id"].value.trim();
+  let catName = document.forms["update"]["new_category_name"].value.trim();
+  if(isNaN(catID)){
+    alert("Category ID must be a number");
+    return false;
+  }
+  if(catName.length<2){
+    alert("First name must be at least 2 characters long");
+    return false;
+  }
+
+}
+
+//upload_products.php validation
+function valProd(){
+  let prodName = document.forms["prod"]["product_name"].value.trim();
+  let prodPrice = document.forms["prod"]["price"].value.trim();
+  let prodDisc = document.forms["prod"]["discount"].value.trim();
+  let prodDesc = document.forms["prod"]["description"].value.trim();
+  let imageExtension = document.forms["prod"]["image"].value.split('.').pop().toLowerCase();
+  let prodBrand = document.forms["prod"]["description"].value.trim();
+  if(prodName.length<2){
+    alert("Product name must be at least 2 characters long");
+    return false;
+  }
+  if(isNaN(prodPrice)){
+    alert("Product price must be a number");
+    return false;
+  }
+  if(isNaN(prodDisc)){
+    alert("Product discount must be a number");
+    return false;
+  }
+  if(prodDesc.length<10){
+    alert("Product description must be at least 10 characters long");
     return false;
   }
   var isValidFile = false;
@@ -36,29 +72,12 @@ function valCat(){
     alert("Image must be JPG or PNG");
     return false;
   }
-}
-
-function valImage(){
-  let imageExtension = document.forms["image"]["prod_image"].value.split('.').pop().toLowerCase();
-  let title = document.forms["image"]["title"].value.trim();
-  var isValidFile = false;
-  var allowedExtension = ['jpeg', 'jpg', 'png'];
-  for(var index in allowedExtension) {
-    if(imageExtension === allowedExtension[index]) {
-        isValidFile = true; 
-        break;
-    }
-  }
-  if (!isValidFile) {
-    alert("Image must be JPG or PNG");
-    return false;
-  }
-  if(title.length<5){
-    alert("Image title must be at least 5 characters long");
+alert("aa");
+  if(prodBrand.length<2){
+    alert("Product brand must be at least 2 characters long");
     return false;
   }
 }
-
 //cart.php validation
 function valCart(){
   let fname = document.forms["cartForm"]["fname"].value.trim();
