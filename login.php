@@ -1,11 +1,11 @@
 <?php
-
+session_start();
 $title = "Skate Shop - Login";
 $stylesheet = "login";
 $extra = "";
 include "partials/header.php";
+include "partials/db.php";
 
-include "connect.php";
 
 
 

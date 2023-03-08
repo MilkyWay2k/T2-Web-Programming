@@ -1,8 +1,10 @@
 <?php
+session_start();
 $title = "Skate Shop - Home Page";
 $stylesheet = "";
 $extra = "";
 include "partials/header.php";
+include "partials/db.php";
 ?>
 
   <div class="row">

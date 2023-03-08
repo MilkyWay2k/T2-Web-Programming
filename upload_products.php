@@ -13,8 +13,8 @@ include "partials/db.php";
 
 
 <div class="container">
-<div class="row d-flex justify-content-center justify-content-md-start">    
-    <a href="upload_category.php">upload category</a>
+    <a href="upload_products.php" class="btn border mb-4 mt-4">@upload categories@</a><br>
+    <a href="profile.php" class="btn border mb-4"> <= back to the dashboard bro*</a>
 
     <h1>Upload Product</h1>
         <form action="upload_products.php" method="post" enctype="multipart/form-data" name="prod">

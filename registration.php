@@ -1,10 +1,11 @@
 <?php
+session_start();
 $title = "Skate Shop - Registration";
 $stylesheet = "registration";
 $extra = "";
 include "partials/header.php";
+include "partials/db.php";
 
-include "connect.php";
 
 ?>
 <div class="container reg_form">

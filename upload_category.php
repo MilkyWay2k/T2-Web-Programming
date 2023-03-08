@@ -10,9 +10,12 @@ include "partials/db.php";
 ?>
 <script src="js/val1.js"></script>
 <div class="container">
+    
 
+ 
+<a href="upload_products.php" class="btn border mb-4 mt-4">@upload product@</a><br>
+<a href="profile.php" class="btn border mb-4"> <= back to the dashboard bro*</a>
 
-<a href="upload_products.php">upload product</a>
 <h1>Create Category</h1>
 <form action="upload_category.php" method="post" enctype="multipart/form-data" name="cat">
     <label for="category_name">Category Name:</label>

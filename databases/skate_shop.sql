@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 08, 2023 at 05:38 PM
+-- Generation Time: Mar 08, 2023 at 09:34 PM
 -- Server version: 8.0.32
 -- PHP Version: 8.0.19
 
@@ -40,7 +40,31 @@ CREATE TABLE `cart_item` (
 
 INSERT INTO `cart_item` (`session_id`, `product_id`, `quantity`, `session`) VALUES
 ('a3f4caa26fcf2915d80a8a2a0cdfa8b7', 3, 2, 33),
-('a3f4caa26fcf2915d80a8a2a0cdfa8b7', 5, 2, 34);
+('a3f4caa26fcf2915d80a8a2a0cdfa8b7', 5, 2, 34),
+('a3f4caa26fcf2915d80a8a2a0cdfa8b7', 3, 1, 35),
+('a3f4caa26fcf2915d80a8a2a0cdfa8b7', 3, 1, 36);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` int NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` text NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `f_name` varchar(100) NOT NULL,
+  `l_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `username`, `password`, `email`, `f_name`, `l_name`) VALUES
+(1, 'poika', '$2y$10$bp3qrJPPCRSRtHZCZhx7LuAwi.kFDPhjht7n/Gfnl/D67gpFVsDIq', 'poika@gmail.com', 'peter', 'poika');
 
 -- --------------------------------------------------------
 
@@ -122,6 +146,12 @@ ALTER TABLE `cart_item`
   ADD PRIMARY KEY (`session`);
 
 --
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`);
+
+--
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
@@ -147,7 +177,13 @@ ALTER TABLE `product_category`
 -- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `session` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `session` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `images`
