@@ -16,57 +16,28 @@ include "databases/db.php";
       <b>Shop</b>
     </a>
   </div>
-
+  <?php
+  $sql = "SELECT * FROM product_category";
+  $result = $conn->query($sql);
+  ?>
   <div class="row d-flex justify-content-center justify-content-md-start">
-    <div class="card col-4 text-md catcard">
-      <a href="#">
-        <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-        <div class="card-img-overlay">
-          <h5 class="card-title card-title-category">skateboard</h5>
-          <p class="card-text"><small>12 items</small></p>
-        </div>
-      </a>
-    </div>
 
-    <div class="card col-4 text-md catcard">
-      <a href="#">
-        <img src="images/ProductCategory3.png" class="card-img" alt="skate">
-        <div class="card-img-overlay">
-          <h5 class="card-title card-title-category">clothes</h5>
-          <p class="card-text"><small>12 items</small></p>
-        </div>
-      </a>
-    </div>
-
-    <div class="card col-4 text-md catcard">
-      <a href="#">
-        <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-        <div class="card-img-overlay">
-          <h5 class="card-title card-title-category">stickers</h5>
-          <p class="card-text"><small>12 items</small></p>
-        </div>
-      </a>
-    </div>
-
-    <div class="card col-4 text-md catcard">
-      <a href="#">
-        <img src="images/ProductCategory1.png" class="card-img" alt="skate">
-        <div class="card-img-overlay">
-          <h5 class="card-title card-title-category">fingerboard</h5>
-          <p class="card-text"><small>12 items</small></p>
-        </div>
-      </a>
-    </div>
-
-    <div class="card col-4 text-md catcard">
-      <a href="#">
-        <img src="images/ProductCategory2.png" class="card-img" alt="skate">
-        <div class="card-img-overlay">
-          <h5 class="card-title card-title-category">others</h5>
-          <p class="card-text"><small>12 items</small></p>
-        </div>
-      </a>
-    </div>
+    <?php
+    while ($row = $result->fetch_assoc()):
+      ?>
+      <div class="card col-4 text-md catcard">
+        <a href="#">
+          <img src="data:image/jpeg;base64,<?php echo base64_encode($row['category_image']); ?>" class="card-img"
+            alt="<?php echo $row['category_name']; ?>">
+          <div class="card-img-overlay">
+            <h5 class="card-title card-title-category">
+              <?php echo $row['category_name']; ?>
+            </h5>
+            <p class="card-text"><small>12 items</small></p>
+          </div>
+        </a>
+      </div>
+    <?php endwhile; ?>
   </div>
 </div>
 
@@ -74,7 +45,8 @@ include "databases/db.php";
 
 <div class="container justify-content-center">
   <form method="post">
-    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="sorting" onchange="this.form.submit()">
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="sorting"
+      onchange="this.form.submit()">
       <option selected>Sorting</option>
       <option value="1">Lowest price first</option>
       <option value="2">Highest price first</option>
@@ -91,19 +63,16 @@ include "databases/db.php";
       $sorting = $_POST['sorting'];
       if ($sorting == 1) {
         $query = $queryBase . " ORDER BY price ASC";
-      }
-      else if ($sorting == 2) {
+      } else if ($sorting == 2) {
         $query = $queryBase . " ORDER BY price DESC";
-      }
-      else if ($sorting == 3) {
+      } else if ($sorting == 3) {
         $query = $queryBase . " ORDER BY name ASC";
-      }
-      else if ($sorting == 4) {
+      } else if ($sorting == 4) {
         $query = $queryBase . " ORDER BY name DESC";
       }
       //echo $query;
     }
-    
+
     $result = $conn->query($query);
     while ($row = mysqli_fetch_assoc($result)):
       ?>

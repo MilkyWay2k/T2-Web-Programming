@@ -19,14 +19,21 @@ function valProd(){
 
 function valCat(){
   let name = document.forms["category"]["name"].value.trim();
-  let desc = document.forms["category"]["desc"].value.trim();
-
+  let imageExtension = document.forms["category"]["category_image"].value.split('.').pop().toLowerCase();
   if(name.length<5){
     alert("Category name must be at least 5 characters long");
     return false;
   }
-  if(desc.length<15){
-    alert("Category description must be at least 15 characters long");
+  var isValidFile = false;
+  var allowedExtension = ['jpeg', 'jpg', 'png'];
+  for(var index in allowedExtension) {
+    if(imageExtension === allowedExtension[index]) {
+        isValidFile = true; 
+        break;
+    }
+  }
+  if (!isValidFile) {
+    alert("Image must be JPG or PNG");
     return false;
   }
 }

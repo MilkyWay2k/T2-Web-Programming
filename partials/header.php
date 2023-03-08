@@ -15,7 +15,7 @@
     <?php echo $title; ?>
   </title>
   <?php echo $extra; ?>
-  <script src="../js/val.js"></script>
+  <script src="../js/val1.js"></script>
 </head>
 
 <body>

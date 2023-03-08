@@ -49,9 +49,9 @@ include "databases/db.php";
   <!--Category form-->
   <div class="col-4">
     <h2>Add Product Category</h2>
-    <form method="post" action="" onsubmit="return valCat()" name="category">
+    <form method="post" action="" onsubmit="return valCat()" name="category" enctype="multipart/form-data">
       <input type="text" name="name" placeholder="Category name" required><br>
-      <input type="text" name="desc" placeholder="Description" required><br>
+      <input type="file" name="category_image" required><br>
       <input type="submit" value="Submit" name="csubmit">
     </form>
   </div>
@@ -89,9 +89,9 @@ if (isset($_POST["psubmit"])) {
 //Category submission
 if (isset($_POST["csubmit"])) {
   $name = $_POST["name"];
-  $desc = $_POST["desc"];
-  $sql = "insert into product_category (category_name, description)
-    values('$name', '$desc')";
+  $category_image = addslashes(file_get_contents($_FILES["category_image"]["tmp_name"]));
+  $sql = "insert into product_category (category_name, category_image)
+    values('$name', '$category_image')";
     echo "<meta http-equiv='refresh' content='0'>";
     if ($conn->query($sql)) {
     echo "Success!";
