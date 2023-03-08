@@ -18,7 +18,7 @@ include "partials/header.php";
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <button type="submit" class="btn btn-success" href="shop.php">Log in</button>
+            <button type="submit" name="submit" class="btn btn-success" href="shop.php">Log in</button>
             <a class="reg" href="registration.php">Registration</a>
         </div>
         <div class="w-100"></div>
