@@ -91,6 +91,10 @@ $result_cart = $conn->query($sql_cart);
               echo "<p>your cart is empty.</p>";
             }
             ?>€</div>
+            
+<?php
+
+?>
             <br>
             <br>
           </div>

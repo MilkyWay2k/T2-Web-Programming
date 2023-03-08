@@ -52,7 +52,7 @@ if(isset($_POST["submit"])) {
 
 
 <div class="container reg_form">
-    <form class="row justify-content-center" method="post" action="login.php">
+    <form class="row justify-content-center" method="post" action="profile.php">
         <h3>Welcome back!</h3>
        <div class="mb-3 col-12 col-md-4">
             <label for="username" class="form-label">Username</label>
