@@ -1,6 +1,6 @@
 <?php
 
-$servername = "db";
+$servername = "webprog23-db-1";
 $username = "root";
 $password = "password";
 $dbname = "skate_shop";
