@@ -3,6 +3,15 @@ $title = "Skate Shop - Skateparks under the magnifying";
 $stylesheet = "blog";
 $extra = "";
 include "partials/header.php";
+include "partials/db.php";
+?>
+
+<?php
+  $article_id = $_GET['article_id'];
+  $sql = "SELECT title, content, tags FROM blog WHERE article_id = $article_id";
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
 ?>
 
   <div class="container">
@@ -16,7 +25,7 @@ include "partials/header.php";
           Blog
         </a>
         <img src="images/Icons/ArrowRight.png" alt="Blog3">
-        <b>Skateparks under the magnifying...</b>
+        <?php echo '<b>' . $row["title"] . '</b>'?>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -25,17 +34,7 @@ include "partials/header.php";
       </div>
       <div class="col-md-6 text-center">
         <br>
-        <p>Sean Cliver’s Strangelove Skateboards have just dropped 3 rad super limited Ray Barbee Guest decks.
-          Sean penned the original Powell Peralta Ray Barbee Rag Doll Deck graphic way back in 1989 and has revisited it
-          here for this special Strangelove guest mini series.
-          The 3 decks are called Classic, Legacy and What If…?
-          Classic – As mentioned Cliver penned the original Powell Peralta Ray Barbee Rag Doll Graphic. This model the
-          Strangelove Ray Barbee Classic Skateboard Deck runs the same colours as the original with the Cyan Blue Dip.
-          Legacy – Sean celebrates the multiple different versions of the Rag Doll that he’s drawn over the years for
-          the Strangelove Ray Barbee Legacy Skateboard Deck.
-          What If…? – This graphic is a What If…? Ray Barbee went to World Industries back in the day. Sean reimagines
-          it as if World had printed it in their Day Glo Fluorescent inks to give us the Strangelove Ray Barbee What
-          If…? Skateboard Deck.</p>
+        <?php echo '<p>' . $row["content"] . '</p>'?>
         <br>
         <img src="images/Blog2.png" alt="Blog2">
       </div>
@@ -47,9 +46,52 @@ include "partials/header.php";
           </a>
         </div>
       </div>
+      <br><br><br>
+      <form method="post" action="add_comment.php">
+        <h3>Add a Comment</h3>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="comment">Comment:</label>
+          <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+        </div>
+        <input type="hidden" name="article_id" value="<?php echo $article_id; ?>">
+        <br>
+        <button type="submit" class="btn btn-danger btn-circle white">Add comment</button>
+      </form>
+      <h3>Comments:</h3>
+      <?php
+      $sql = "SELECT name, comment, created_at FROM comments WHERE article_id = $article_id ORDER BY created_at DESC";
+      $result = mysqli_query($conn, $sql);
+
+      if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+          echo "<div class='comment'>";
+          echo "<h4>" . $row["name"] . "</h4>";
+          echo "<h5>" . $row["comment"] . "</h5>";
+          echo "<small class='form-text text-muted'>Added: " . $row["created_at"] . "</small>";
+          echo "</div>";
+          echo '<hr>';
+        }
+      } else {
+        echo "<p>No comments yet.</p>";
+      }
+
+      mysqli_close($conn);
+      ?>
     </div>
   </div>
 
   <?php
+      }
+    } else {
+      echo "0 results";
+    }
     include 'partials/footer.php';
   ?>
