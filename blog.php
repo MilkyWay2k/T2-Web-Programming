@@ -1,14 +1,18 @@
 <?php
-$title = "Skate Shop - Blog";
 $stylesheet = "blog";
 $extra = "";
 include "partials/header.php";
 include "partials/db.php";
 
+<<<<<<< Updated upstream
 $sql = "SELECT article_id, title, content, tags, image FROM blog";
 $result = mysqli_query($conn, $sql);
 $row = $result->fetch_assoc();
 $image = $row['image'];
+=======
+$sql = "SELECT title, content FROM blog";
+$result = mysqli_query($conn, $sql);
+>>>>>>> Stashed changes
 ?>
 
 <script>
